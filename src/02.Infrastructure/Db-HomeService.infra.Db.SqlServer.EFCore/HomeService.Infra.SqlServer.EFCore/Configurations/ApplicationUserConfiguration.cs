@@ -26,7 +26,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(u => u.Province)
-                   .WithMany()
+                   .WithMany(p => p.Users)
                    .HasForeignKey(u => u.ProvinceId)
                    .OnDelete(DeleteBehavior.Restrict);
 

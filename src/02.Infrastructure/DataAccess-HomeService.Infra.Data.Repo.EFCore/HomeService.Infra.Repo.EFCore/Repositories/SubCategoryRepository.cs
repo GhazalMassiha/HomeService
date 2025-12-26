@@ -14,7 +14,6 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
             return await context.SubCategories
                 .AsNoTracking()
                 .Where(sc => sc.Id == id)
-                .OrderBy(c => c.Name)
                 .Select(sc => new SubCategoryDto
                 {
                     Id = sc.Id,
@@ -27,11 +26,13 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
                 .FirstOrDefaultAsync(cancellationToken);
         }
 
-        public async Task<List<SubCategoryDto>> GetAll(CancellationToken cancellationToken)
+        public async Task<List<SubCategoryDto>> GetAll(int page, int pageSize, CancellationToken cancellationToken)
         {
             return await context.SubCategories
                 .AsNoTracking()
-                .OrderBy(c => c.Name)
+                .OrderBy(sc => sc.Name)                      
+                .Skip((page - 1) * pageSize)                 
+                .Take(pageSize)
                 .Select(sc => new SubCategoryDto
                 {
                     Id = sc.Id,
@@ -44,12 +45,14 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
                 .ToListAsync(cancellationToken);
         }
 
-        public async Task<List<SubCategoryDto>> GetByCategoryId(int categoryId, CancellationToken cancellationToken)
+        public async Task<List<SubCategoryDto>> GetByCategoryId(int page, int pageSize, int categoryId, CancellationToken cancellationToken)
         {
             return await context.SubCategories
                 .AsNoTracking()
                 .Where(sc => sc.CategoryId  == categoryId)
                 .OrderBy(c => c.Name)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .Select(sc => new SubCategoryDto
                 {
                     Id = sc.Id,
