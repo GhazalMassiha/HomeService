@@ -18,6 +18,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
                     Id = sc.Id,
                     Name = sc.Name,
                     CategoryId = sc.CategoryId
+
                 })
                 .FirstOrDefaultAsync(cancellationToken);
         }
@@ -31,6 +32,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
                     Id = sc.Id,
                     Name = sc.Name,
                     CategoryId = sc.CategoryId
+
                 })
                 .ToListAsync(cancellationToken);
         }
@@ -41,6 +43,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
             {
                 Name = subCategoryCreateDto.Name,
                 CategoryId = subCategoryCreateDto.CategoryId
+
             };
 
             await context.SubCategories.AddAsync(subCategory, cancellationToken);

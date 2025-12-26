@@ -19,6 +19,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
                     Id = c.Id,
                     Name = c.Name,
                     ImageUrl = c.ImageUrl
+
                 })
                 .FirstOrDefaultAsync(cancellationToken);
         }
@@ -32,6 +33,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
                     Id = c.Id,
                     Name = c.Name,
                     ImageUrl = c.ImageUrl
+
                 })
                 .ToListAsync(cancellationToken);
         }
@@ -42,6 +44,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
             {
                 Name = categoryCreateDto.Name,
                 ImageUrl = categoryCreateDto.ImageUrl
+
             };
 
             await context.Categories.AddAsync(category, cancellationToken);
