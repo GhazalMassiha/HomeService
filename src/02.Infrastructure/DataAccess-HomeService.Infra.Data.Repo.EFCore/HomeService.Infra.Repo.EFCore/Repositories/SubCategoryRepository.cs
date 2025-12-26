@@ -3,6 +3,7 @@ using Core_HomeService.Domain.Core.SubCategoryAgg.DTOs;
 using Core_HomeService.Domain.Core.SubCategoryAgg.Entities;
 using Core_HomeService.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 
 namespace HomeService.Infra.SqlServer.EFCore.Repositories
 {
@@ -29,6 +30,23 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
         {
             return await context.SubCategories
                 .AsNoTracking()
+                .Select(sc => new SubCategoryDto
+                {
+                    Id = sc.Id,
+                    Name = sc.Name,
+                    Description = sc.Description,
+                    BasePrice = sc.BasePrice,
+                    CategoryId = sc.CategoryId
+
+                })
+                .ToListAsync(cancellationToken);
+        }
+
+        public async Task<List<SubCategoryDto>> GetByCategoryId(int categoryId, CancellationToken cancellationToken)
+        {
+            return await context.SubCategories
+                .AsNoTracking()
+                .Where(sc => sc.CategoryId  == categoryId)
                 .Select(sc => new SubCategoryDto
                 {
                     Id = sc.Id,

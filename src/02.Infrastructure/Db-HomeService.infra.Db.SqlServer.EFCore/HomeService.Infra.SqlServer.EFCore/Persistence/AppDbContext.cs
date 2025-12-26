@@ -7,7 +7,6 @@ using Core_HomeService.Domain.Core.ProvinceAgg.Entities;
 using Core_HomeService.Domain.Core.RequestAgg.Entities;
 using Core_HomeService.Domain.Core.SubCategoryAgg.Entities;
 using Core_HomeService.Domain.Core.UserAgg.Entities;
-using HomeService.Infra.SqlServer.EFCore.Configurations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -45,23 +44,5 @@ namespace Core_HomeService.Infrastructure.Persistence
             base.OnConfiguring(optionsBuilder);
         }
 
-        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-
-            modelBuilder.ApplyConfiguration(new ProvinceConfiguration());
-            modelBuilder.ApplyConfiguration(new CityConfiguration());
-            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
-            modelBuilder.ApplyConfiguration(new SubCategoryConfiguration());
-            modelBuilder.ApplyConfiguration(new ExpertSubCategoryConfiguration());
-            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
-            modelBuilder.ApplyConfiguration(new ExpertConfiguration());
-            modelBuilder.ApplyConfiguration(new RequestConfiguration());
-            modelBuilder.ApplyConfiguration(new OfferConfiguration());
-            modelBuilder.ApplyConfiguration(new CommentConfiguration());
-            modelBuilder.ApplyConfiguration(new RequestImageConfiguration());
-            modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
-        }*/
     }
 }
