@@ -17,6 +17,8 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
                 {
                     Id = sc.Id,
                     Name = sc.Name,
+                    Description = sc.Description,
+                    BasePrice = sc.BasePrice,
                     CategoryId = sc.CategoryId
 
                 })
@@ -31,6 +33,8 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
                 {
                     Id = sc.Id,
                     Name = sc.Name,
+                    Description = sc.Description,
+                    BasePrice = sc.BasePrice,
                     CategoryId = sc.CategoryId
 
                 })
@@ -42,7 +46,9 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
             var subCategory = new SubCategory
             {
                 Name = subCategoryCreateDto.Name,
-                CategoryId = subCategoryCreateDto.CategoryId
+                CategoryId = subCategoryCreateDto.CategoryId,
+                Description = subCategoryCreateDto.Description,
+                BasePrice = subCategoryCreateDto.BasePrice
 
             };
 
@@ -56,7 +62,9 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
                 .Where(sc => sc.Id == subCategoryId)
                 .ExecuteUpdateAsync(setter => setter
                     .SetProperty(sc => sc.Name, subCategoryCreateDto.Name)
-                    .SetProperty(sc => sc.CategoryId, subCategoryCreateDto.CategoryId),
+                    .SetProperty(sc => sc.CategoryId, subCategoryCreateDto.CategoryId)
+                    .SetProperty(sc => sc.Description, subCategoryCreateDto.Description)
+                    .SetProperty(sc => sc.BasePrice, subCategoryCreateDto.BasePrice),
                     cancellationToken);
 
             return affectedRows > 0;
