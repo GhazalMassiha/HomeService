@@ -14,6 +14,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
             return await context.Categories
                 .AsNoTracking()
                 .Where(c => c.Id == id)
+                .OrderBy(c => c.Name)
                 .Select(c => new CategoryDto
                 {
                     Id = c.Id,
@@ -28,6 +29,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
         {
             return await context.Categories
                 .AsNoTracking()
+                .OrderBy(c => c.Name)
                 .Select(c => new CategoryDto
                 {
                     Id = c.Id,
