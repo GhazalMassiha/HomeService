@@ -11,7 +11,7 @@ namespace Core_HomeService.Domain.Core.OfferAgg.Entities
         public int RequestId { get; set; }
         public decimal Price { get; set; }
         public string Text { get; set; }
-        public OfferStatusEnum Status { get; set; }
+        public OfferStatusEnum Status { get; set; } = OfferStatusEnum.Pending;
         public DateTime CreatedAt { get; set; }
 
         public Expert? Expert { get; set; }

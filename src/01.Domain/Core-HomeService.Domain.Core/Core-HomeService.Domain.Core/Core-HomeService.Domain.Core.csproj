@@ -9,9 +9,7 @@
 
   <ItemGroup>
     <Folder Include="CategoryAgg\Contracts\AppServiceContracts\" />
-    <Folder Include="CategoryAgg\Contracts\RepositoryContracts\" />
     <Folder Include="CategoryAgg\Contracts\ServiceContracts\" />
-    <Folder Include="CategoryAgg\DTOs\" />
     <Folder Include="CityAgg\Contracts\AppServiceContracts\" />
     <Folder Include="CityAgg\Contracts\RepositoryContracts\" />
     <Folder Include="CityAgg\Contracts\ServiceContracts\" />
@@ -37,9 +35,7 @@
     <Folder Include="RequestAgg\Contracts\ServiceContracts\" />
     <Folder Include="RequestAgg\DTOs\" />
     <Folder Include="SubCategoryAgg\Contracts\AppServiceContracts\" />
-    <Folder Include="SubCategoryAgg\Contracts\RepositoryContracts\" />
     <Folder Include="SubCategoryAgg\Contracts\ServiceContracts\" />
-    <Folder Include="SubCategoryAgg\DTOs\" />
     <Folder Include="UserAgg\Contracts\AppServiceContracts\" />
     <Folder Include="UserAgg\Contracts\ServiceContracts\" />
     <Folder Include="UserAgg\Contracts\RepositoryContracts\" />

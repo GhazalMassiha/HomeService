@@ -7,7 +7,7 @@ namespace Core_HomeService.Domain.Core.CategoryAgg.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
         public List<SubCategory>? SubCategories { get; set; }
 

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Core_HomeService.Domain.Core.UserAgg.Entities
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : IdentityUser<int>
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

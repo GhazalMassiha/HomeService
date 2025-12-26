@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>HomeService_EndPoimt.MVC</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\01.Domain\Core-HomeService.Domain.Core\Core-HomeService.Domain.Core\Core-HomeService.Domain.Core.csproj" />
+    <ProjectReference Include="..\..\01.Domain\Service\HomeService-Domain.AppService\AppService-HomeService.Domain.AppService\AppService-HomeService.Domain.AppService.csproj" />
+    <ProjectReference Include="..\..\01.Domain\Service\HomeService-Domain.Service\Service-HomeService.Domain.Service\Service-HomeService.Domain.Service.csproj" />
+    <ProjectReference Include="..\..\02.Infrastructure\DataAccess-HomeService.Infra.Data.Repo.EFCore\HomeService.Infra.Repo.EFCore\HomeService.Infra.Repo.EFCore.csproj" />
+    <ProjectReference Include="..\..\02.Infrastructure\Db-HomeService.infra.Db.SqlServer.EFCore\HomeService.Infra.SqlServer.EFCore\HomeService.Infra.SqlServer.EFCore.csproj" />
+  </ItemGroup>
+
+</Project>

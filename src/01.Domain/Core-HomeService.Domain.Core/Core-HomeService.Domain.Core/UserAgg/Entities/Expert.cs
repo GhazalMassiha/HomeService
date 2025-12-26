@@ -7,7 +7,7 @@ namespace Core_HomeService.Domain.Core.UserAgg.Entities
     public class Expert
     {
         public int Id { get; set; }
-        public string UserId { get; set; }
+        public int UserId { get; set; }
         public string CardNumber { get; set; }
         public string Biography { get; set; }
         public double Rating { get; set; } = 0;
