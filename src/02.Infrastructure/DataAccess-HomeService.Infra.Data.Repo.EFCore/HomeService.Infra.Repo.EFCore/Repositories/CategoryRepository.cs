@@ -1,6 +1,8 @@
-﻿using Core_HomeService.Domain.Core.CategoryAgg.Contracts.RepositoryContracts;
+﻿using Azure;
+using Core_HomeService.Domain.Core.CategoryAgg.Contracts.RepositoryContracts;
 using Core_HomeService.Domain.Core.CategoryAgg.DTOs;
 using Core_HomeService.Domain.Core.CategoryAgg.Entities;
+using Core_HomeService.Domain.Core.SubCategoryAgg.DTOs;
 using Core_HomeService.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,10 +26,13 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
                 .FirstOrDefaultAsync(cancellationToken);
         }
 
-        public async Task<List<CategoryDto>> GetAll(CancellationToken cancellationToken)
+        public async Task<List<CategoryDto>> GetAll(int page, int pageSize, CancellationToken cancellationToken)
         {
             return await context.Categories
                 .AsNoTracking()
+                .OrderBy(c => c.Name)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .Select(c => new CategoryDto
                 {
                     Id = c.Id,

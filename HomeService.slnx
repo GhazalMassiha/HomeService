@@ -1,23 +1,22 @@
 <Solution>
-  <Folder Name="/00.Framework/" />
   <Folder Name="/src/" />
   <Folder Name="/src/01.Domain/" />
-  <Folder Name="/src/01.Domain/Core-HomeService.Domain.Core/">
-    <Project Path="src/01.Domain/Core-HomeService.Domain.Core/Core-HomeService.Domain.Core/Core-HomeService.Domain.Core.csproj" />
+  <Folder Name="/src/01.Domain/Core/">
+    <Project Path="src/01.Domain/Core-HomeService.Domain.Core/Core-HomeService.Domain.Core/HomeService.Domain.Core.csproj" />
   </Folder>
   <Folder Name="/src/01.Domain/Service/" />
-  <Folder Name="/src/01.Domain/Service/HomeService-Domain.AppService/">
-    <Project Path="src/01.Domain/Service/HomeService-Domain.AppService/AppService-HomeService.Domain.AppService/AppService-HomeService.Domain.AppService.csproj" />
+  <Folder Name="/src/01.Domain/Service/AppService/">
+    <Project Path="src/01.Domain/Service/HomeService-Domain.AppService/AppService-HomeService.Domain.AppService/HomeService.Domain.AppService.csproj" />
   </Folder>
-  <Folder Name="/src/01.Domain/Service/HomeService-Domain.Service/">
-    <Project Path="src/01.Domain/Service/HomeService-Domain.Service/Service-HomeService.Domain.Service/Service-HomeService.Domain.Service.csproj" />
+  <Folder Name="/src/01.Domain/Service/Service/">
+    <Project Path="src/01.Domain/Service/HomeService-Domain.Service/Service-HomeService.Domain.Service/HomeService.Domain.Service.csproj" />
   </Folder>
   <Folder Name="/src/02.Infrastructure/" />
-  <Folder Name="/src/02.Infrastructure/DataAccess-HomeService.Infra.Data.Repo.EFCore/">
+  <Folder Name="/src/02.Infrastructure/DataAccess/">
     <Project Path="src/02.Infrastructure/DataAccess-HomeService.Infra.Data.Repo.EFCore/HomeService.Infra.Repo.EFCore/HomeService.Infra.Repo.EFCore.csproj" />
   </Folder>
-  <Folder Name="/src/02.Infrastructure/Db-HomeService.infra.Db.SqlServer.EFCore/">
-    <Project Path="src/02.Infrastructure/Db-HomeService.infra.Db.SqlServer.EFCore/HomeService.Infra.SqlServer.EFCore/HomeService.Infra.SqlServer.EFCore.csproj" />
+  <Folder Name="/src/02.Infrastructure/DataBase/">
+    <Project Path="src/02.Infrastructure/Db-HomeService.infra.Db.SqlServer.EFCore/HomeService.Infra.SqlServer.EFCore/HomeService.Infra.Db.SqlServer.csproj" />
   </Folder>
   <Folder Name="/src/03.Presentation/">
     <Project Path="src/03.Presentation/HomeService-EndPoimt.MVC/HomeService-EndPoimt.MVC.csproj" Id="fc7f50c0-3d63-4897-a0db-d785a57f8750" />

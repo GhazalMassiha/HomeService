@@ -15,11 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\01.Domain\Core-HomeService.Domain.Core\Core-HomeService.Domain.Core\Core-HomeService.Domain.Core.csproj" />
-    <ProjectReference Include="..\..\01.Domain\Service\HomeService-Domain.AppService\AppService-HomeService.Domain.AppService\AppService-HomeService.Domain.AppService.csproj" />
-    <ProjectReference Include="..\..\01.Domain\Service\HomeService-Domain.Service\Service-HomeService.Domain.Service\Service-HomeService.Domain.Service.csproj" />
+    <ProjectReference Include="..\..\01.Domain\Core-HomeService.Domain.Core\Core-HomeService.Domain.Core\HomeService.Domain.Core.csproj" />
+    <ProjectReference Include="..\..\01.Domain\Service\HomeService-Domain.AppService\AppService-HomeService.Domain.AppService\HomeService.Domain.AppService.csproj" />
+    <ProjectReference Include="..\..\01.Domain\Service\HomeService-Domain.Service\Service-HomeService.Domain.Service\HomeService.Domain.Service.csproj" />
     <ProjectReference Include="..\..\02.Infrastructure\DataAccess-HomeService.Infra.Data.Repo.EFCore\HomeService.Infra.Repo.EFCore\HomeService.Infra.Repo.EFCore.csproj" />
-    <ProjectReference Include="..\..\02.Infrastructure\Db-HomeService.infra.Db.SqlServer.EFCore\HomeService.Infra.SqlServer.EFCore\HomeService.Infra.SqlServer.EFCore.csproj" />
+    <ProjectReference Include="..\..\02.Infrastructure\Db-HomeService.infra.Db.SqlServer.EFCore\HomeService.Infra.SqlServer.EFCore\HomeService.Infra.Db.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>
