@@ -6,7 +6,7 @@ namespace Core_HomeService.Domain.Core.CategoryAgg.Contracts.RepositoryContracts
     public interface ICategoryRepository
     {
         Task<CategoryDto?> GetById(int id, CancellationToken cancellationToken);
-        Task<List<CategoryDto>> GetAll(CancellationToken cancellationToken);
+        Task<List<CategoryDto>> GetAll(int page, int pageSize, CancellationToken cancellationToken);
         Task<bool> Create(CategoryCreateDto categoryCreateDto, CancellationToken cancellationToken);
         Task<bool> Update(int categoryId, CategoryCreateDto categoryCreateDto, CancellationToken cancellationToken);
         Task<bool> Delete(int categoryId, CancellationToken cancellationToken);

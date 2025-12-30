@@ -13,6 +13,7 @@ namespace Core_HomeService.Domain.Core.OfferAgg.Entities
         public string Text { get; set; }
         public OfferStatusEnum Status { get; set; } = OfferStatusEnum.Pending;
         public DateTime CreatedAt { get; set; }
+        public DateTime? ScheduledAt { get; set; }
 
         public Expert? Expert { get; set; }
         public Request? Request { get; set; }

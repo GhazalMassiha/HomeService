@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Db-HomeService.infra.Db.SqlServer.EFCore\HomeService.Infra.SqlServer.EFCore\HomeService.Infra.SqlServer.EFCore.csproj" />
+    <ProjectReference Include="..\..\Db-HomeService.infra.Db.SqlServer.EFCore\HomeService.Infra.SqlServer.EFCore\HomeService.Infra.Db.SqlServer.csproj" />
   </ItemGroup>
 
 </Project>

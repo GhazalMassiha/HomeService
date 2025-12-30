@@ -29,12 +29,12 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
                    .ValueGeneratedOnAdd(); 
 
             builder.HasOne(r => r.Province)
-                   .WithMany()
+                   .WithMany(p => p.Requests)
                    .HasForeignKey(r => r.ProvinceId)
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(r => r.City)
-                   .WithMany()
+                   .WithMany(c => c.Requests)
                    .HasForeignKey(r => r.CityId)
                    .OnDelete(DeleteBehavior.Restrict);
 

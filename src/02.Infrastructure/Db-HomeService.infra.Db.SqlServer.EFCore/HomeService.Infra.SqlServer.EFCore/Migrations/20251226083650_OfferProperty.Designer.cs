@@ -4,6 +4,7 @@ using Core_HomeService.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeService.Infra.SqlServer.EFCore.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251226083650_OfferProperty")]
+    partial class OfferProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -931,7 +934,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                             AccessFailedCount = 0,
                             AccountBalance = 0m,
                             CityId = 1,
-                            ConcurrencyStamp = "08938fec-93d9-4ccd-b953-ff623c53bc0b",
+                            ConcurrencyStamp = "21dc6e96-0b2a-418a-8dda-bd8687972f03",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -939,10 +942,10 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEFUkefOxqAkMQIozQFjfPsz0YJpW4yQa0fq0l78f9SfHe5yD9P17aHj4Th3BMREg9A==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHsDKNVSss9CQyP19hv+d1xXFOYcNfPpkmjS8vw0eUSmaf4iugoroK7Hg/qY1oIIJQ==",
                             PhoneNumberConfirmed = false,
                             ProvinceId = 1,
-                            SecurityStamp = "b15e6c14-0081-499b-9d84-7c557eb94c8d",
+                            SecurityStamp = "1584eced-f344-4a08-b270-5ced74cdb8b3",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -1039,21 +1042,21 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "e81e109c-3caf-4688-8e8b-b913f3eeb51a",
+                            ConcurrencyStamp = "9c14c07a-5647-493e-8ceb-c823a17814a3",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "baca6dfc-b871-47ac-bb9a-ed6e8a6d31bf",
+                            ConcurrencyStamp = "aba5fede-f9d6-43f8-b396-f6e52e75be9c",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "244a9e04-0079-4ef9-b5d5-036096d42e62",
+                            ConcurrencyStamp = "e2ff7b38-d42e-4f05-944c-234d0f3375ce",
                             Name = "Expert",
                             NormalizedName = "EXPERT"
                         });
@@ -1240,7 +1243,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
             modelBuilder.Entity("Core_HomeService.Domain.Core.RequestAgg.Entities.Request", b =>
                 {
                     b.HasOne("Core_HomeService.Domain.Core.CityAgg.Entities.City", "City")
-                        .WithMany("Requests")
+                        .WithMany()
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1252,7 +1255,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                         .IsRequired();
 
                     b.HasOne("Core_HomeService.Domain.Core.ProvinceAgg.Entities.Province", "Province")
-                        .WithMany("Requests")
+                        .WithMany()
                         .HasForeignKey("ProvinceId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1303,7 +1306,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                         .IsRequired();
 
                     b.HasOne("Core_HomeService.Domain.Core.ProvinceAgg.Entities.Province", "Province")
-                        .WithMany("Users")
+                        .WithMany()
                         .HasForeignKey("ProvinceId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1393,18 +1396,12 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
 
             modelBuilder.Entity("Core_HomeService.Domain.Core.CityAgg.Entities.City", b =>
                 {
-                    b.Navigation("Requests");
-
                     b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Core_HomeService.Domain.Core.ProvinceAgg.Entities.Province", b =>
                 {
                     b.Navigation("Cities");
-
-                    b.Navigation("Requests");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Core_HomeService.Domain.Core.RequestAgg.Entities.Request", b =>

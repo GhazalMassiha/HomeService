@@ -6,6 +6,8 @@ namespace Core_HomeService.Domain.Core.SubCategoryAgg.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
+        public decimal BasePrice { get; set; }
         public int CategoryId { get; set; }
 
         public Category Category { get; set; }
