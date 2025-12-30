@@ -34,8 +34,8 @@
     <Folder Include="RequestAgg\Contracts\RepositoryContracts\" />
     <Folder Include="RequestAgg\Contracts\ServiceContracts\" />
     <Folder Include="RequestAgg\DTOs\" />
-    <Folder Include="SubCategoryAgg\Contracts\AppServiceContracts\" />
-    <Folder Include="SubCategoryAgg\Contracts\ServiceContracts\" />
+    <Folder Include="SpecialityAgg\Contracts\AppServiceContracts\" />
+    <Folder Include="SpecialityAgg\Contracts\ServiceContracts\" />
     <Folder Include="UserAgg\Contracts\AppServiceContracts\" />
     <Folder Include="UserAgg\Contracts\ServiceContracts\" />
     <Folder Include="UserAgg\Contracts\RepositoryContracts\" />

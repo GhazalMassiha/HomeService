@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace HomeService.Infra.SqlServer.EFCore.Migrations
+namespace HomeService.Infra.Db.SqlServer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251226060132_init")]
+    [Migration("20251230150906_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -422,6 +422,9 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                     b.Property<int>("RequestId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("ScheduledAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Status")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
@@ -574,22 +577,22 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                     b.ToTable("Requests");
                 });
 
-            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.ExpertSubCategory", b =>
+            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.ExpertSpeciality", b =>
                 {
                     b.Property<int>("ExpertId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubCategoryId")
+                    b.Property<int>("SpecialityId")
                         .HasColumnType("int");
 
-                    b.HasKey("ExpertId", "SubCategoryId");
+                    b.HasKey("ExpertId", "SpecialityId");
 
-                    b.HasIndex("SubCategoryId");
+                    b.HasIndex("SpecialityId");
 
-                    b.ToTable("ExpertSubCategories");
+                    b.ToTable("ExpertSpecialities");
                 });
 
-            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.SubCategory", b =>
+            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.Speciality", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -597,8 +600,17 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<decimal>("BasePrice")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -609,163 +621,215 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("SubCategories");
+                    b.ToTable("Specialities");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
+                            BasePrice = 500000m,
                             CategoryId = 1,
+                            Description = "انجام عملیات بنایی و ساخت دیوار، آجرکاری و تسطیح سطوح",
                             Name = "بنایی"
                         },
                         new
                         {
                             Id = 2,
+                            BasePrice = 700000m,
                             CategoryId = 1,
+                            Description = "طراحی و اجرای دکوراسیون داخلی، نصب دیوارپوش و عناصر تزئینی",
                             Name = "دکوراسیون"
                         },
                         new
                         {
                             Id = 3,
+                            BasePrice = 400000m,
                             CategoryId = 1,
+                            Description = "رنگ‌آمیزی سطوح داخلی و خارجی با رنگ‌های باکیفیت",
                             Name = "نقاشی ساختمان"
                         },
                         new
                         {
                             Id = 4,
+                            BasePrice = 600000m,
                             CategoryId = 1,
+                            Description = "نصب و تعمیر انواع درب و پنجره با دقت و آب‌بندی مناسب",
                             Name = "درب و پنجره"
                         },
                         new
                         {
                             Id = 5,
+                            BasePrice = 800000m,
                             CategoryId = 1,
+                            Description = "انجام کارهای فلزی، جوشکاری و ساخت نرده و حفاظ",
                             Name = "آهنگری و جوشکاری"
                         },
                         new
                         {
                             Id = 6,
+                            BasePrice = 300000m,
                             CategoryId = 1,
+                            Description = "طراحی و نگهداری فضای سبز و چمن‌کاری",
                             Name = "باغبانی"
                         },
                         new
                         {
                             Id = 7,
+                            BasePrice = 900000m,
                             CategoryId = 2,
+                            Description = "نصب و سرویس سیستم‌های کولر و بخاری",
                             Name = "سرمایش و گرمایش"
                         },
                         new
                         {
                             Id = 8,
+                            BasePrice = 650000m,
                             CategoryId = 2,
+                            Description = "نصب و تعمیر لوله‌های آب و فاضلاب",
                             Name = "لوله کشی"
                         },
                         new
                         {
                             Id = 9,
+                            BasePrice = 550000m,
                             CategoryId = 2,
+                            Description = "خدمات برق‌کشی و نصب تجهیزات الکتریکی",
                             Name = "برق و الکترونیک"
                         },
                         new
                         {
                             Id = 10,
+                            BasePrice = 750000m,
                             CategoryId = 2,
+                            Description = "نصب و راه‌اندازی سیستم‌های تلفن و سانترال",
                             Name = "تلفن و سانترال"
                         },
                         new
                         {
                             Id = 11,
+                            BasePrice = 1000000m,
                             CategoryId = 3,
+                            Description = "تعمیر و سرویس خودروهای سبک و سنگین",
                             Name = "خودرو"
                         },
                         new
                         {
                             Id = 12,
+                            BasePrice = 1200000m,
                             CategoryId = 4,
+                            Description = "حمل ایمن اسباب و بسته‌بندی وسایل",
                             Name = "اسباب کشی"
                         },
                         new
                         {
                             Id = 13,
+                            BasePrice = 800000m,
                             CategoryId = 4,
+                            Description = "حمل بار شهری با تجهیزات مناسب",
                             Name = "حمل بار"
                         },
                         new
                         {
                             Id = 14,
+                            BasePrice = 600000m,
                             CategoryId = 5,
+                            Description = "نصب و تعمیر لوازم آشپزخانه",
                             Name = "لوازم آشپزخانه"
                         },
                         new
                         {
                             Id = 15,
+                            BasePrice = 550000m,
                             CategoryId = 5,
+                            Description = "تعمیر تجهیزات شستشو و نظافتی",
                             Name = "لوازم شست و شو و نظافت"
                         },
                         new
                         {
                             Id = 16,
+                            BasePrice = 650000m,
                             CategoryId = 5,
+                            Description = "نصب و تعمیر سیستم‌های صوتی و تصویری",
                             Name = "لوازم صوتی و تصویری"
                         },
                         new
                         {
                             Id = 17,
+                            BasePrice = 700000m,
                             CategoryId = 6,
+                            Description = "خدمات تعمیر و نگهداری ماشین‌های اداری",
                             Name = "ماشین اداری"
                         },
                         new
                         {
                             Id = 18,
+                            BasePrice = 900000m,
                             CategoryId = 6,
+                            Description = "نصب و تعمیر مبلمان و تجهیزات اداری",
                             Name = "مبلمان اداری"
                         },
                         new
                         {
                             Id = 19,
+                            BasePrice = 400000m,
                             CategoryId = 7,
+                            Description = "نظافت حرفه‌ای منزل و محل کار",
                             Name = "نظافت"
                         },
                         new
                         {
                             Id = 20,
+                            BasePrice = 500000m,
                             CategoryId = 7,
+                            Description = "شستشوی حرفه‌ای فرش و مبلمان",
                             Name = "خشکشویی و قالیشویی"
                         },
                         new
                         {
                             Id = 21,
+                            BasePrice = 600000m,
                             CategoryId = 7,
+                            Description = "شستشو و پاکسازی فرش و مبل تهیه‌شده",
                             Name = "قالیشویی و مبل شویی"
                         },
                         new
                         {
                             Id = 22,
+                            BasePrice = 450000m,
                             CategoryId = 7,
+                            Description = "سمپاشی حرفه‌ای برای دفع آفات",
                             Name = "سمپاشی"
                         },
                         new
                         {
                             Id = 23,
+                            BasePrice = 700000m,
                             CategoryId = 8,
+                            Description = "تعمیر موبایل و تبلت با قطعات استاندارد",
                             Name = "موبایل و تبلت"
                         },
                         new
                         {
                             Id = 24,
+                            BasePrice = 650000m,
                             CategoryId = 8,
+                            Description = "نصب و راه‌اندازی کامپیوتر و شبکه",
                             Name = "خدمات کامپیوتری"
                         },
                         new
                         {
                             Id = 25,
+                            BasePrice = 1200000m,
                             CategoryId = 8,
+                            Description = "پیاده‌سازی و پشتیبانی شبکه و امنیت",
                             Name = "امنیت و شبکه"
                         },
                         new
                         {
                             Id = 26,
+                            BasePrice = 1500000m,
                             CategoryId = 9,
+                            Description = "خدمات پزشکی اولیه در محل",
                             Name = "پزشکی"
                         });
                 });
@@ -870,7 +934,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                             AccessFailedCount = 0,
                             AccountBalance = 0m,
                             CityId = 1,
-                            ConcurrencyStamp = "5c12df6f-6553-4b19-b468-e2a93053ab31",
+                            ConcurrencyStamp = "4ed2a916-6f99-429f-af9b-c2bf49bffd6b",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -878,10 +942,10 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGUZfLjCjXDeEepU9KWEsSW+H6NKQOHirte/GMeTNWr6ImjKkv/TzzgwWbmW9XtH2g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEECYFpSseRb1NEMurfLpNOxUBFbjldXaavUDNXxFYMgT4+Ru61xK/PSVIXKZ0/3HYg==",
                             PhoneNumberConfirmed = false,
                             ProvinceId = 1,
-                            SecurityStamp = "d976c6b3-ba64-426b-b1cd-3efd21dfe232",
+                            SecurityStamp = "4846f279-e62c-4dba-b28d-26846bf31d22",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -978,21 +1042,21 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "8d37a83b-3493-4c01-8e40-4cd6972b5bc3",
+                            ConcurrencyStamp = "2f5d5c19-90f5-4423-81c1-cf8d966bb72c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "800e9451-9a34-4ab5-b9e8-f653f0011c34",
+                            ConcurrencyStamp = "8bca79e2-b550-4686-971a-045041218ad3",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "01202993-54a5-47c4-b3f2-8a9e8f39b421",
+                            ConcurrencyStamp = "de9c9cbe-1133-4c28-9751-138d7318914e",
                             Name = "Expert",
                             NormalizedName = "EXPERT"
                         });
@@ -1179,7 +1243,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
             modelBuilder.Entity("Core_HomeService.Domain.Core.RequestAgg.Entities.Request", b =>
                 {
                     b.HasOne("Core_HomeService.Domain.Core.CityAgg.Entities.City", "City")
-                        .WithMany()
+                        .WithMany("Requests")
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1191,7 +1255,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                         .IsRequired();
 
                     b.HasOne("Core_HomeService.Domain.Core.ProvinceAgg.Entities.Province", "Province")
-                        .WithMany()
+                        .WithMany("Requests")
                         .HasForeignKey("ProvinceId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1203,29 +1267,29 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                     b.Navigation("Province");
                 });
 
-            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.ExpertSubCategory", b =>
+            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.ExpertSpeciality", b =>
                 {
                     b.HasOne("Core_HomeService.Domain.Core.UserAgg.Entities.Expert", "Expert")
-                        .WithMany("ExpertSubCategories")
+                        .WithMany("ExpertSpecialities")
                         .HasForeignKey("ExpertId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.SubCategory", "SubCategory")
-                        .WithMany("ExpertSubCategories")
-                        .HasForeignKey("SubCategoryId")
+                    b.HasOne("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.Speciality", "Speciality")
+                        .WithMany("ExpertSpecialities")
+                        .HasForeignKey("SpecialityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Expert");
 
-                    b.Navigation("SubCategory");
+                    b.Navigation("Speciality");
                 });
 
-            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.SubCategory", b =>
+            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.Speciality", b =>
                 {
                     b.HasOne("Core_HomeService.Domain.Core.CategoryAgg.Entities.Category", "Category")
-                        .WithMany("SubCategories")
+                        .WithMany("Specialities")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1242,7 +1306,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                         .IsRequired();
 
                     b.HasOne("Core_HomeService.Domain.Core.ProvinceAgg.Entities.Province", "Province")
-                        .WithMany()
+                        .WithMany("Users")
                         .HasForeignKey("ProvinceId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1327,17 +1391,23 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
 
             modelBuilder.Entity("Core_HomeService.Domain.Core.CategoryAgg.Entities.Category", b =>
                 {
-                    b.Navigation("SubCategories");
+                    b.Navigation("Specialities");
                 });
 
             modelBuilder.Entity("Core_HomeService.Domain.Core.CityAgg.Entities.City", b =>
                 {
+                    b.Navigation("Requests");
+
                     b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Core_HomeService.Domain.Core.ProvinceAgg.Entities.Province", b =>
                 {
                     b.Navigation("Cities");
+
+                    b.Navigation("Requests");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Core_HomeService.Domain.Core.RequestAgg.Entities.Request", b =>
@@ -1349,9 +1419,9 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                     b.Navigation("Offers");
                 });
 
-            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.SubCategory", b =>
+            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.Speciality", b =>
                 {
-                    b.Navigation("ExpertSubCategories");
+                    b.Navigation("ExpertSpecialities");
                 });
 
             modelBuilder.Entity("Core_HomeService.Domain.Core.UserAgg.Entities.ApplicationUser", b =>
@@ -1372,7 +1442,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("ExpertSubCategories");
+                    b.Navigation("ExpertSpecialities");
 
                     b.Navigation("Offers");
                 });

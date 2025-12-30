@@ -23,8 +23,8 @@ namespace Core_HomeService.Infrastructure.Persistence
         public DbSet<Province> Provinces { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<SubCategory> SubCategories { get; set; }
-        public DbSet<ExpertSubCategory> ExpertSubCategories { get; set; }
+        public DbSet<Speciality> Specialities { get; set; }
+        public DbSet<ExpertSpeciality> ExpertSpecialities { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Expert> Experts { get; set; }
         public DbSet<Request> Requests { get; set; }

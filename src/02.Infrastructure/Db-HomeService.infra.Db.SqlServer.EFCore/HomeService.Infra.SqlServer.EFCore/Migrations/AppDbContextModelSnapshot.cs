@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace HomeService.Infra.SqlServer.EFCore.Migrations
+namespace HomeService.Infra.Db.SqlServer.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot
@@ -571,22 +571,22 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                     b.ToTable("Requests");
                 });
 
-            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.ExpertSubCategory", b =>
+            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.ExpertSpeciality", b =>
                 {
                     b.Property<int>("ExpertId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubCategoryId")
+                    b.Property<int>("SpecialityId")
                         .HasColumnType("int");
 
-                    b.HasKey("ExpertId", "SubCategoryId");
+                    b.HasKey("ExpertId", "SpecialityId");
 
-                    b.HasIndex("SubCategoryId");
+                    b.HasIndex("SpecialityId");
 
-                    b.ToTable("ExpertSubCategories");
+                    b.ToTable("ExpertSpecialities");
                 });
 
-            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.SubCategory", b =>
+            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.Speciality", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -606,7 +606,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("SubCategories");
+                    b.ToTable("Specialities");
 
                     b.HasData(
                         new
@@ -867,7 +867,11 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                             AccessFailedCount = 0,
                             AccountBalance = 0m,
                             CityId = 1,
+<<<<<<< Updated upstream
                             ConcurrencyStamp = "5c12df6f-6553-4b19-b468-e2a93053ab31",
+=======
+                            ConcurrencyStamp = "4ed2a916-6f99-429f-af9b-c2bf49bffd6b",
+>>>>>>> Stashed changes
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -875,10 +879,17 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
+<<<<<<< Updated upstream
                             PasswordHash = "AQAAAAIAAYagAAAAEGUZfLjCjXDeEepU9KWEsSW+H6NKQOHirte/GMeTNWr6ImjKkv/TzzgwWbmW9XtH2g==",
                             PhoneNumberConfirmed = false,
                             ProvinceId = 1,
                             SecurityStamp = "d976c6b3-ba64-426b-b1cd-3efd21dfe232",
+=======
+                            PasswordHash = "AQAAAAIAAYagAAAAEECYFpSseRb1NEMurfLpNOxUBFbjldXaavUDNXxFYMgT4+Ru61xK/PSVIXKZ0/3HYg==",
+                            PhoneNumberConfirmed = false,
+                            ProvinceId = 1,
+                            SecurityStamp = "4846f279-e62c-4dba-b28d-26846bf31d22",
+>>>>>>> Stashed changes
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -975,21 +986,33 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                         new
                         {
                             Id = 1,
+<<<<<<< Updated upstream
                             ConcurrencyStamp = "8d37a83b-3493-4c01-8e40-4cd6972b5bc3",
+=======
+                            ConcurrencyStamp = "2f5d5c19-90f5-4423-81c1-cf8d966bb72c",
+>>>>>>> Stashed changes
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
+<<<<<<< Updated upstream
                             ConcurrencyStamp = "800e9451-9a34-4ab5-b9e8-f653f0011c34",
+=======
+                            ConcurrencyStamp = "8bca79e2-b550-4686-971a-045041218ad3",
+>>>>>>> Stashed changes
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
                             Id = 3,
+<<<<<<< Updated upstream
                             ConcurrencyStamp = "01202993-54a5-47c4-b3f2-8a9e8f39b421",
+=======
+                            ConcurrencyStamp = "de9c9cbe-1133-4c28-9751-138d7318914e",
+>>>>>>> Stashed changes
                             Name = "Expert",
                             NormalizedName = "EXPERT"
                         });
@@ -1200,29 +1223,29 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                     b.Navigation("Province");
                 });
 
-            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.ExpertSubCategory", b =>
+            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.ExpertSpeciality", b =>
                 {
                     b.HasOne("Core_HomeService.Domain.Core.UserAgg.Entities.Expert", "Expert")
-                        .WithMany("ExpertSubCategories")
+                        .WithMany("ExpertSpecialities")
                         .HasForeignKey("ExpertId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.SubCategory", "SubCategory")
-                        .WithMany("ExpertSubCategories")
-                        .HasForeignKey("SubCategoryId")
+                    b.HasOne("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.Speciality", "Speciality")
+                        .WithMany("ExpertSpecialities")
+                        .HasForeignKey("SpecialityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Expert");
 
-                    b.Navigation("SubCategory");
+                    b.Navigation("Speciality");
                 });
 
-            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.SubCategory", b =>
+            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.Speciality", b =>
                 {
                     b.HasOne("Core_HomeService.Domain.Core.CategoryAgg.Entities.Category", "Category")
-                        .WithMany("SubCategories")
+                        .WithMany("Specialities")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1324,7 +1347,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
 
             modelBuilder.Entity("Core_HomeService.Domain.Core.CategoryAgg.Entities.Category", b =>
                 {
-                    b.Navigation("SubCategories");
+                    b.Navigation("Specialities");
                 });
 
             modelBuilder.Entity("Core_HomeService.Domain.Core.CityAgg.Entities.City", b =>
@@ -1346,9 +1369,9 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                     b.Navigation("Offers");
                 });
 
-            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.SubCategory", b =>
+            modelBuilder.Entity("Core_HomeService.Domain.Core.SubCategoryAgg.Entities.Speciality", b =>
                 {
-                    b.Navigation("ExpertSubCategories");
+                    b.Navigation("ExpertSpecialities");
                 });
 
             modelBuilder.Entity("Core_HomeService.Domain.Core.UserAgg.Entities.ApplicationUser", b =>
@@ -1369,7 +1392,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                 {
                     b.Navigation("Comments");
 
-                    b.Navigation("ExpertSubCategories");
+                    b.Navigation("ExpertSpecialities");
 
                     b.Navigation("Offers");
                 });

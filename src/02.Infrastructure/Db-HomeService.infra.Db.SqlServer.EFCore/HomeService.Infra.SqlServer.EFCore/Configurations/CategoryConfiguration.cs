@@ -17,7 +17,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
             builder.Property(c => c.ImageUrl)
                    .HasMaxLength(500);
 
-            builder.HasMany(c => c.SubCategories)
+            builder.HasMany(c => c.Specialities)
                    .WithOne(sc => sc.Category)
                    .HasForeignKey(sc => sc.CategoryId)
                    .OnDelete(DeleteBehavior.Cascade);

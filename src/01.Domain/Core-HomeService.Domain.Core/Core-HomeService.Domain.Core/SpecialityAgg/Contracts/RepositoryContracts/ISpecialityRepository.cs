@@ -1,0 +1,15 @@
+﻿using Core_HomeService.Domain.Core.SubCategoryAgg.DTOs;
+using Core_HomeService.Domain.Core.SubCategoryAgg.Entities;
+
+namespace Core_HomeService.Domain.Core.SubCategoryAgg.Contracts.RepositoryContracts
+{
+    public interface ISpecialityRepository
+    {
+        Task<SpecialityDto?> GetById(int id, CancellationToken cancellationToken);
+        Task<List<SpecialityDto>> GetAll(int page, int pageSize, CancellationToken cancellationToken);
+        Task<List<SpecialityDto>> GetByCategoryId(int page, int pageSize, int categoryId, CancellationToken cancellationToken);
+        Task<bool> Create(SpecialityCreateDto specialityCreateDto, CancellationToken cancellationToken);
+        Task<bool> Update(int specialityId, SpecialityCreateDto specialityCreateDto, CancellationToken cancellationToken);
+        Task<bool> Delete(int specialityId, CancellationToken cancellationToken);
+    }
+}

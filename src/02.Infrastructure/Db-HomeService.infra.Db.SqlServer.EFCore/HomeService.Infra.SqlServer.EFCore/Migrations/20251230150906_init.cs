@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace HomeService.Infra.SqlServer.EFCore.Migrations
+namespace HomeService.Infra.Db.SqlServer.Migrations
 {
     /// <inheritdoc />
     public partial class init : Migration
@@ -77,19 +77,21 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "SubCategories",
+                name: "Specialities",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    BasePrice = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_SubCategories", x => x.Id);
+                    table.PrimaryKey("PK_Specialities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_SubCategories_Categories_CategoryId",
+                        name: "FK_Specialities_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
@@ -326,25 +328,25 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ExpertSubCategories",
+                name: "ExpertSpecialities",
                 columns: table => new
                 {
                     ExpertId = table.Column<int>(type: "int", nullable: false),
-                    SubCategoryId = table.Column<int>(type: "int", nullable: false)
+                    SpecialityId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ExpertSubCategories", x => new { x.ExpertId, x.SubCategoryId });
+                    table.PrimaryKey("PK_ExpertSpecialities", x => new { x.ExpertId, x.SpecialityId });
                     table.ForeignKey(
-                        name: "FK_ExpertSubCategories_Experts_ExpertId",
+                        name: "FK_ExpertSpecialities_Experts_ExpertId",
                         column: x => x.ExpertId,
                         principalTable: "Experts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_ExpertSubCategories_SubCategories_SubCategoryId",
-                        column: x => x.SubCategoryId,
-                        principalTable: "SubCategories",
+                        name: "FK_ExpertSpecialities_Specialities_SpecialityId",
+                        column: x => x.SpecialityId,
+                        principalTable: "Specialities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -396,7 +398,8 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                     Price = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
                     Text = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "Pending"),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()")
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    ScheduledAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -440,9 +443,9 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "8d37a83b-3493-4c01-8e40-4cd6972b5bc3", "Admin", "ADMIN" },
-                    { 2, "800e9451-9a34-4ab5-b9e8-f653f0011c34", "Customer", "CUSTOMER" },
-                    { 3, "01202993-54a5-47c4-b3f2-8a9e8f39b421", "Expert", "EXPERT" }
+                    { 1, "2f5d5c19-90f5-4423-81c1-cf8d966bb72c", "Admin", "ADMIN" },
+                    { 2, "8bca79e2-b550-4686-971a-045041218ad3", "Customer", "CUSTOMER" },
+                    { 3, "de9c9cbe-1133-4c28-9751-138d7318914e", "Expert", "EXPERT" }
                 });
 
             migrationBuilder.InsertData(
@@ -524,42 +527,42 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "SubCategories",
-                columns: new[] { "Id", "CategoryId", "Name" },
+                table: "Specialities",
+                columns: new[] { "Id", "BasePrice", "CategoryId", "Description", "Name" },
                 values: new object[,]
                 {
-                    { 1, 1, "بنایی" },
-                    { 2, 1, "دکوراسیون" },
-                    { 3, 1, "نقاشی ساختمان" },
-                    { 4, 1, "درب و پنجره" },
-                    { 5, 1, "آهنگری و جوشکاری" },
-                    { 6, 1, "باغبانی" },
-                    { 7, 2, "سرمایش و گرمایش" },
-                    { 8, 2, "لوله کشی" },
-                    { 9, 2, "برق و الکترونیک" },
-                    { 10, 2, "تلفن و سانترال" },
-                    { 11, 3, "خودرو" },
-                    { 12, 4, "اسباب کشی" },
-                    { 13, 4, "حمل بار" },
-                    { 14, 5, "لوازم آشپزخانه" },
-                    { 15, 5, "لوازم شست و شو و نظافت" },
-                    { 16, 5, "لوازم صوتی و تصویری" },
-                    { 17, 6, "ماشین اداری" },
-                    { 18, 6, "مبلمان اداری" },
-                    { 19, 7, "نظافت" },
-                    { 20, 7, "خشکشویی و قالیشویی" },
-                    { 21, 7, "قالیشویی و مبل شویی" },
-                    { 22, 7, "سمپاشی" },
-                    { 23, 8, "موبایل و تبلت" },
-                    { 24, 8, "خدمات کامپیوتری" },
-                    { 25, 8, "امنیت و شبکه" },
-                    { 26, 9, "پزشکی" }
+                    { 1, 500000m, 1, "انجام عملیات بنایی و ساخت دیوار، آجرکاری و تسطیح سطوح", "بنایی" },
+                    { 2, 700000m, 1, "طراحی و اجرای دکوراسیون داخلی، نصب دیوارپوش و عناصر تزئینی", "دکوراسیون" },
+                    { 3, 400000m, 1, "رنگ‌آمیزی سطوح داخلی و خارجی با رنگ‌های باکیفیت", "نقاشی ساختمان" },
+                    { 4, 600000m, 1, "نصب و تعمیر انواع درب و پنجره با دقت و آب‌بندی مناسب", "درب و پنجره" },
+                    { 5, 800000m, 1, "انجام کارهای فلزی، جوشکاری و ساخت نرده و حفاظ", "آهنگری و جوشکاری" },
+                    { 6, 300000m, 1, "طراحی و نگهداری فضای سبز و چمن‌کاری", "باغبانی" },
+                    { 7, 900000m, 2, "نصب و سرویس سیستم‌های کولر و بخاری", "سرمایش و گرمایش" },
+                    { 8, 650000m, 2, "نصب و تعمیر لوله‌های آب و فاضلاب", "لوله کشی" },
+                    { 9, 550000m, 2, "خدمات برق‌کشی و نصب تجهیزات الکتریکی", "برق و الکترونیک" },
+                    { 10, 750000m, 2, "نصب و راه‌اندازی سیستم‌های تلفن و سانترال", "تلفن و سانترال" },
+                    { 11, 1000000m, 3, "تعمیر و سرویس خودروهای سبک و سنگین", "خودرو" },
+                    { 12, 1200000m, 4, "حمل ایمن اسباب و بسته‌بندی وسایل", "اسباب کشی" },
+                    { 13, 800000m, 4, "حمل بار شهری با تجهیزات مناسب", "حمل بار" },
+                    { 14, 600000m, 5, "نصب و تعمیر لوازم آشپزخانه", "لوازم آشپزخانه" },
+                    { 15, 550000m, 5, "تعمیر تجهیزات شستشو و نظافتی", "لوازم شست و شو و نظافت" },
+                    { 16, 650000m, 5, "نصب و تعمیر سیستم‌های صوتی و تصویری", "لوازم صوتی و تصویری" },
+                    { 17, 700000m, 6, "خدمات تعمیر و نگهداری ماشین‌های اداری", "ماشین اداری" },
+                    { 18, 900000m, 6, "نصب و تعمیر مبلمان و تجهیزات اداری", "مبلمان اداری" },
+                    { 19, 400000m, 7, "نظافت حرفه‌ای منزل و محل کار", "نظافت" },
+                    { 20, 500000m, 7, "شستشوی حرفه‌ای فرش و مبلمان", "خشکشویی و قالیشویی" },
+                    { 21, 600000m, 7, "شستشو و پاکسازی فرش و مبل تهیه‌شده", "قالیشویی و مبل شویی" },
+                    { 22, 450000m, 7, "سمپاشی حرفه‌ای برای دفع آفات", "سمپاشی" },
+                    { 23, 700000m, 8, "تعمیر موبایل و تبلت با قطعات استاندارد", "موبایل و تبلت" },
+                    { 24, 650000m, 8, "نصب و راه‌اندازی کامپیوتر و شبکه", "خدمات کامپیوتری" },
+                    { 25, 1200000m, 8, "پیاده‌سازی و پشتیبانی شبکه و امنیت", "امنیت و شبکه" },
+                    { 26, 1500000m, 9, "خدمات پزشکی اولیه در محل", "پزشکی" }
                 });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "AccountBalance", "CityId", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "ImageUrl", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProvinceId", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, 0m, 1, "5c12df6f-6553-4b19-b468-e2a93053ab31", "admin@gmail.com", true, "admin", null, "admin", false, null, "ADMIN@GMAIL.COM", "ADMIN", "AQAAAAIAAYagAAAAEGUZfLjCjXDeEepU9KWEsSW+H6NKQOHirte/GMeTNWr6ImjKkv/TzzgwWbmW9XtH2g==", null, false, 1, "d976c6b3-ba64-426b-b1cd-3efd21dfe232", false, "admin" });
+                values: new object[] { 1, 0, 0m, 1, "4ed2a916-6f99-429f-af9b-c2bf49bffd6b", "admin@gmail.com", true, "admin", null, "admin", false, null, "ADMIN@GMAIL.COM", "ADMIN", "AQAAAAIAAYagAAAAEECYFpSseRb1NEMurfLpNOxUBFbjldXaavUDNXxFYMgT4+Ru61xK/PSVIXKZ0/3HYg==", null, false, 1, "4846f279-e62c-4dba-b28d-26846bf31d22", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
@@ -648,9 +651,9 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_ExpertSubCategories_SubCategoryId",
-                table: "ExpertSubCategories",
-                column: "SubCategoryId");
+                name: "IX_ExpertSpecialities_SpecialityId",
+                table: "ExpertSpecialities",
+                column: "SpecialityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Offers_ExpertId",
@@ -683,8 +686,8 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                 column: "ProvinceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_SubCategories_CategoryId",
-                table: "SubCategories",
+                name: "IX_Specialities_CategoryId",
+                table: "Specialities",
                 column: "CategoryId");
         }
 
@@ -710,7 +713,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                 name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "ExpertSubCategories");
+                name: "ExpertSpecialities");
 
             migrationBuilder.DropTable(
                 name: "Offers");
@@ -722,7 +725,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "SubCategories");
+                name: "Specialities");
 
             migrationBuilder.DropTable(
                 name: "Experts");

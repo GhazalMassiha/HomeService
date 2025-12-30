@@ -15,6 +15,6 @@ namespace Core_HomeService.Domain.Core.UserAgg.Entities
         public ApplicationUser? User { get; set; }
         public List<Offer>? Offers { get; set; }
         public List<Comment>? Comments { get; set; }
-        public List<ExpertSubCategory> ExpertSubCategories { get; set; }
+        public List<ExpertSpeciality> ExpertSpecialities { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace Core_HomeService.Domain.Core.CategoryAgg.Entities
         public string Name { get; set; }
         public string? ImageUrl { get; set; }
 
-        public List<SubCategory>? SubCategories { get; set; }
+        public List<Speciality>? Specialities { get; set; }
 
     }
 }
