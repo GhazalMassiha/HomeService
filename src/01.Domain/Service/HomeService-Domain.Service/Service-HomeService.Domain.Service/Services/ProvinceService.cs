@@ -32,7 +32,7 @@ namespace Service_HomeService.Domain.Service.Services
             return await provinceRepository.GetById(id, cancellationToken);
         }
 
-        public async Task<bool> Update(int id, ProvinceCreateDto dto, CancellationToken cancellationToken)
+        public async Task<bool> Update(int id, ProvinceDto dto, CancellationToken cancellationToken)
         {
             return await provinceRepository.Update(id, dto, cancellationToken);
         }
