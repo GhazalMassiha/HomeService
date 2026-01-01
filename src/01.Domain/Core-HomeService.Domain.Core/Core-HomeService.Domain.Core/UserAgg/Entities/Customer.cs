@@ -1,11 +1,11 @@
-﻿using Core_HomeService.Domain.Core.CommentAgg.Entities;
+﻿using Core_HomeService.Domain.Core._common;
+using Core_HomeService.Domain.Core.CommentAgg.Entities;
 using Core_HomeService.Domain.Core.RequestAgg.Entities;
 
 namespace Core_HomeService.Domain.Core.UserAgg.Entities
 {
-    public class Customer
+    public class Customer : BaseEntity
     {
-        public int Id { get; set; }
         public int UserId { get; set; }
         public string Address { get; set; }
 

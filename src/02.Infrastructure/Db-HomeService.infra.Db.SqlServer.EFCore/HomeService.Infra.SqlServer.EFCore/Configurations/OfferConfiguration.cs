@@ -24,6 +24,9 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
                    .HasDefaultValue(OfferStatusEnum.Pending)
                    .HasSentinel(OfferStatusEnum.Pending);
 
+            builder.Property(c => c.IsDeleted)
+                .HasDefaultValue(false);
+
             builder.Property(o => o.CreatedAt)
                    .HasDefaultValueSql("GETUTCDATE()")
                    .ValueGeneratedOnAdd();

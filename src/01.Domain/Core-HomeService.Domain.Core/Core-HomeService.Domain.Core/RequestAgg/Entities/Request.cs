@@ -1,4 +1,5 @@
-﻿using Core_HomeService.Domain.Core.CityAgg.Entities;
+﻿using Core_HomeService.Domain.Core._common;
+using Core_HomeService.Domain.Core.CityAgg.Entities;
 using Core_HomeService.Domain.Core.CommentAgg.Entities;
 using Core_HomeService.Domain.Core.ImageAgg.Entities;
 using Core_HomeService.Domain.Core.OfferAgg.Entities;
@@ -9,16 +10,14 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Core_HomeService.Domain.Core.RequestAgg.Entities
 {
-    public class Request
+    public class Request : BaseEntity
     {
-        public int Id { get; set; }
         public int CustomerId { get; set; }
         public int ProvinceId { get; set; }
         public int CityId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public RequestStatusEnum Status { get; set; } = RequestStatusEnum.Pending;
-        public DateTime CreatedAt { get; set; }
         public DateTime? ScheduledAt { get; set; }
 
         public Customer? Customer { get; set; }

@@ -1,11 +1,11 @@
-﻿using Core_HomeService.Domain.Core.ProvinceAgg.Entities;
+﻿using Core_HomeService.Domain.Core._common;
+using Core_HomeService.Domain.Core.ProvinceAgg.Entities;
 using Core_HomeService.Domain.Core.UserAgg.Entities;
 
 namespace Core_HomeService.Domain.Core.CityAgg.Entities
 {
-    public class City
+    public class City : BaseEntity
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public int ProvinceId { get; set; }
 

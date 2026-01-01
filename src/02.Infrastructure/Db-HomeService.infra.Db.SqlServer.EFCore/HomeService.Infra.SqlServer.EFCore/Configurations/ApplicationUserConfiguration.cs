@@ -23,11 +23,13 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
             builder.HasOne(u => u.City)
                    .WithMany(c => c.Users)
                    .HasForeignKey(u => u.CityId)
+                   .IsRequired(false)
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(u => u.Province)
                    .WithMany()
                    .HasForeignKey(u => u.ProvinceId)
+                   .IsRequired(false)
                    .OnDelete(DeleteBehavior.Restrict);
 
 

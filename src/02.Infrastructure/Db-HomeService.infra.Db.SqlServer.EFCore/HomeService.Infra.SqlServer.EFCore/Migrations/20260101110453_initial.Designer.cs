@@ -9,11 +9,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace HomeService.Infra.Db.SqlServer.Migrations
+namespace HomeService.Infra.SqlServer.EFCore.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251230150906_init")]
-    partial class init
+    [Migration("20260101110453_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,9 +33,19 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
                     b.Property<string>("ImageUrl")
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -50,46 +60,64 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "دکوراسیون ساختمان"
                         },
                         new
                         {
                             Id = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "تاسیسات ساختمان"
                         },
                         new
                         {
                             Id = 3,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "وسایل نقلیه"
                         },
                         new
                         {
                             Id = 4,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "اسباب کشی و باربری"
                         },
                         new
                         {
                             Id = 5,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "لوازم خانگی"
                         },
                         new
                         {
                             Id = 6,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "خدمات اداری"
                         },
                         new
                         {
                             Id = 7,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "نظافت و بهداشت"
                         },
                         new
                         {
                             Id = 8,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "دیجیتال و نرم افزار"
                         },
                         new
                         {
                             Id = 9,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "پزشکی و سلامت"
                         });
                 });
@@ -101,6 +129,16 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -120,216 +158,288 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "تهران",
                             ProvinceId = 1
                         },
                         new
                         {
                             Id = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "اسلامشهر",
                             ProvinceId = 1
                         },
                         new
                         {
                             Id = 3,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "ری",
                             ProvinceId = 1
                         },
                         new
                         {
                             Id = 4,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "اصفهان",
                             ProvinceId = 2
                         },
                         new
                         {
                             Id = 5,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "کاشان",
                             ProvinceId = 2
                         },
                         new
                         {
                             Id = 6,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "نجف‌آباد",
                             ProvinceId = 2
                         },
                         new
                         {
                             Id = 7,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "مشهد",
                             ProvinceId = 3
                         },
                         new
                         {
                             Id = 8,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "نیشابور",
                             ProvinceId = 3
                         },
                         new
                         {
                             Id = 9,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "سبزوار",
                             ProvinceId = 3
                         },
                         new
                         {
                             Id = 10,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "شیراز",
                             ProvinceId = 4
                         },
                         new
                         {
                             Id = 11,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "مرودشت",
                             ProvinceId = 4
                         },
                         new
                         {
                             Id = 12,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "جهرم",
                             ProvinceId = 4
                         },
                         new
                         {
                             Id = 13,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "اهواز",
                             ProvinceId = 5
                         },
                         new
                         {
                             Id = 14,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "آبادان",
                             ProvinceId = 5
                         },
                         new
                         {
                             Id = 15,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "دزفول",
                             ProvinceId = 5
                         },
                         new
                         {
                             Id = 16,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "ساری",
                             ProvinceId = 6
                         },
                         new
                         {
                             Id = 17,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "بابل",
                             ProvinceId = 6
                         },
                         new
                         {
                             Id = 18,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "آمل",
                             ProvinceId = 6
                         },
                         new
                         {
                             Id = 19,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "رشت",
                             ProvinceId = 7
                         },
                         new
                         {
                             Id = 20,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "انزلی",
                             ProvinceId = 7
                         },
                         new
                         {
                             Id = 21,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "لاهیجان",
                             ProvinceId = 7
                         },
                         new
                         {
                             Id = 22,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "گرگان",
                             ProvinceId = 8
                         },
                         new
                         {
                             Id = 23,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "گنبد کاووس",
                             ProvinceId = 8
                         },
                         new
                         {
                             Id = 24,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "آق‌قلا",
                             ProvinceId = 8
                         },
                         new
                         {
                             Id = 25,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "تبریز",
                             ProvinceId = 9
                         },
                         new
                         {
                             Id = 26,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "مراغه",
                             ProvinceId = 9
                         },
                         new
                         {
                             Id = 27,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "میانه",
                             ProvinceId = 9
                         },
                         new
                         {
                             Id = 28,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "سنندج",
                             ProvinceId = 10
                         },
                         new
                         {
                             Id = 29,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "قروه",
                             ProvinceId = 10
                         },
                         new
                         {
                             Id = 30,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "بانه",
                             ProvinceId = 10
                         },
                         new
                         {
                             Id = 31,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "کرمان",
                             ProvinceId = 11
                         },
                         new
                         {
                             Id = 32,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "سیرجان",
                             ProvinceId = 11
                         },
                         new
                         {
                             Id = 33,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "بم",
                             ProvinceId = 11
                         },
                         new
                         {
                             Id = 34,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "یزد",
                             ProvinceId = 12
                         },
                         new
                         {
                             Id = 35,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "میبد",
                             ProvinceId = 12
                         },
                         new
                         {
                             Id = 36,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "اردکان",
                             ProvinceId = 12
                         });
@@ -353,6 +463,16 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
 
                     b.Property<int>("ExpertId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("IsApproved")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<int>("Rating")
                         .HasColumnType("int");
@@ -384,10 +504,20 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
                     b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<int>("RequestId")
                         .HasColumnType("int");
@@ -415,15 +545,17 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                     b.Property<int>("ExpertId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
                     b.Property<decimal>("Price")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("RequestId")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("ScheduledAt")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Status")
                         .IsRequired()
@@ -453,6 +585,16 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -466,61 +608,85 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                         new
                         {
                             Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "تهران"
                         },
                         new
                         {
                             Id = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "اصفهان"
                         },
                         new
                         {
                             Id = 3,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "خراسان رضوی"
                         },
                         new
                         {
                             Id = 4,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "فارس"
                         },
                         new
                         {
                             Id = 5,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "خوزستان"
                         },
                         new
                         {
                             Id = 6,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "مازندران"
                         },
                         new
                         {
                             Id = 7,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "گیلان"
                         },
                         new
                         {
                             Id = 8,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "گلستان"
                         },
                         new
                         {
                             Id = 9,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "آذربایجان شرقی"
                         },
                         new
                         {
                             Id = 10,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "کردستان"
                         },
                         new
                         {
                             Id = 11,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "کرمان"
                         },
                         new
                         {
                             Id = 12,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
                             Name = "یزد"
                         });
                 });
@@ -548,6 +714,11 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                         .IsRequired()
                         .HasMaxLength(2000)
                         .HasColumnType("nvarchar(2000)");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<int>("ProvinceId")
                         .HasColumnType("int");
@@ -607,10 +778,20 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -629,7 +810,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 1,
                             BasePrice = 500000m,
                             CategoryId = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "انجام عملیات بنایی و ساخت دیوار، آجرکاری و تسطیح سطوح",
+                            IsDeleted = false,
                             Name = "بنایی"
                         },
                         new
@@ -637,7 +820,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 2,
                             BasePrice = 700000m,
                             CategoryId = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "طراحی و اجرای دکوراسیون داخلی، نصب دیوارپوش و عناصر تزئینی",
+                            IsDeleted = false,
                             Name = "دکوراسیون"
                         },
                         new
@@ -645,7 +830,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 3,
                             BasePrice = 400000m,
                             CategoryId = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "رنگ‌آمیزی سطوح داخلی و خارجی با رنگ‌های باکیفیت",
+                            IsDeleted = false,
                             Name = "نقاشی ساختمان"
                         },
                         new
@@ -653,7 +840,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 4,
                             BasePrice = 600000m,
                             CategoryId = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "نصب و تعمیر انواع درب و پنجره با دقت و آب‌بندی مناسب",
+                            IsDeleted = false,
                             Name = "درب و پنجره"
                         },
                         new
@@ -661,7 +850,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 5,
                             BasePrice = 800000m,
                             CategoryId = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "انجام کارهای فلزی، جوشکاری و ساخت نرده و حفاظ",
+                            IsDeleted = false,
                             Name = "آهنگری و جوشکاری"
                         },
                         new
@@ -669,7 +860,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 6,
                             BasePrice = 300000m,
                             CategoryId = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "طراحی و نگهداری فضای سبز و چمن‌کاری",
+                            IsDeleted = false,
                             Name = "باغبانی"
                         },
                         new
@@ -677,7 +870,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 7,
                             BasePrice = 900000m,
                             CategoryId = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "نصب و سرویس سیستم‌های کولر و بخاری",
+                            IsDeleted = false,
                             Name = "سرمایش و گرمایش"
                         },
                         new
@@ -685,7 +880,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 8,
                             BasePrice = 650000m,
                             CategoryId = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "نصب و تعمیر لوله‌های آب و فاضلاب",
+                            IsDeleted = false,
                             Name = "لوله کشی"
                         },
                         new
@@ -693,7 +890,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 9,
                             BasePrice = 550000m,
                             CategoryId = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "خدمات برق‌کشی و نصب تجهیزات الکتریکی",
+                            IsDeleted = false,
                             Name = "برق و الکترونیک"
                         },
                         new
@@ -701,7 +900,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 10,
                             BasePrice = 750000m,
                             CategoryId = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "نصب و راه‌اندازی سیستم‌های تلفن و سانترال",
+                            IsDeleted = false,
                             Name = "تلفن و سانترال"
                         },
                         new
@@ -709,7 +910,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 11,
                             BasePrice = 1000000m,
                             CategoryId = 3,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "تعمیر و سرویس خودروهای سبک و سنگین",
+                            IsDeleted = false,
                             Name = "خودرو"
                         },
                         new
@@ -717,7 +920,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 12,
                             BasePrice = 1200000m,
                             CategoryId = 4,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "حمل ایمن اسباب و بسته‌بندی وسایل",
+                            IsDeleted = false,
                             Name = "اسباب کشی"
                         },
                         new
@@ -725,7 +930,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 13,
                             BasePrice = 800000m,
                             CategoryId = 4,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "حمل بار شهری با تجهیزات مناسب",
+                            IsDeleted = false,
                             Name = "حمل بار"
                         },
                         new
@@ -733,7 +940,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 14,
                             BasePrice = 600000m,
                             CategoryId = 5,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "نصب و تعمیر لوازم آشپزخانه",
+                            IsDeleted = false,
                             Name = "لوازم آشپزخانه"
                         },
                         new
@@ -741,7 +950,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 15,
                             BasePrice = 550000m,
                             CategoryId = 5,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "تعمیر تجهیزات شستشو و نظافتی",
+                            IsDeleted = false,
                             Name = "لوازم شست و شو و نظافت"
                         },
                         new
@@ -749,7 +960,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 16,
                             BasePrice = 650000m,
                             CategoryId = 5,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "نصب و تعمیر سیستم‌های صوتی و تصویری",
+                            IsDeleted = false,
                             Name = "لوازم صوتی و تصویری"
                         },
                         new
@@ -757,7 +970,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 17,
                             BasePrice = 700000m,
                             CategoryId = 6,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "خدمات تعمیر و نگهداری ماشین‌های اداری",
+                            IsDeleted = false,
                             Name = "ماشین اداری"
                         },
                         new
@@ -765,7 +980,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 18,
                             BasePrice = 900000m,
                             CategoryId = 6,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "نصب و تعمیر مبلمان و تجهیزات اداری",
+                            IsDeleted = false,
                             Name = "مبلمان اداری"
                         },
                         new
@@ -773,7 +990,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 19,
                             BasePrice = 400000m,
                             CategoryId = 7,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "نظافت حرفه‌ای منزل و محل کار",
+                            IsDeleted = false,
                             Name = "نظافت"
                         },
                         new
@@ -781,7 +1000,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 20,
                             BasePrice = 500000m,
                             CategoryId = 7,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "شستشوی حرفه‌ای فرش و مبلمان",
+                            IsDeleted = false,
                             Name = "خشکشویی و قالیشویی"
                         },
                         new
@@ -789,7 +1010,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 21,
                             BasePrice = 600000m,
                             CategoryId = 7,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "شستشو و پاکسازی فرش و مبل تهیه‌شده",
+                            IsDeleted = false,
                             Name = "قالیشویی و مبل شویی"
                         },
                         new
@@ -797,7 +1020,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 22,
                             BasePrice = 450000m,
                             CategoryId = 7,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "سمپاشی حرفه‌ای برای دفع آفات",
+                            IsDeleted = false,
                             Name = "سمپاشی"
                         },
                         new
@@ -805,7 +1030,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 23,
                             BasePrice = 700000m,
                             CategoryId = 8,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "تعمیر موبایل و تبلت با قطعات استاندارد",
+                            IsDeleted = false,
                             Name = "موبایل و تبلت"
                         },
                         new
@@ -813,7 +1040,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 24,
                             BasePrice = 650000m,
                             CategoryId = 8,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "نصب و راه‌اندازی کامپیوتر و شبکه",
+                            IsDeleted = false,
                             Name = "خدمات کامپیوتری"
                         },
                         new
@@ -821,7 +1050,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 25,
                             BasePrice = 1200000m,
                             CategoryId = 8,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "پیاده‌سازی و پشتیبانی شبکه و امنیت",
+                            IsDeleted = false,
                             Name = "امنیت و شبکه"
                         },
                         new
@@ -829,7 +1060,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             Id = 26,
                             BasePrice = 1500000m,
                             CategoryId = 9,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "خدمات پزشکی اولیه در محل",
+                            IsDeleted = false,
                             Name = "پزشکی"
                         });
                 });
@@ -934,7 +1167,7 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             AccessFailedCount = 0,
                             AccountBalance = 0m,
                             CityId = 1,
-                            ConcurrencyStamp = "4ed2a916-6f99-429f-af9b-c2bf49bffd6b",
+                            ConcurrencyStamp = "4e67dea3-3e64-46d3-b87f-9ba4aa1391f4",
                             Email = "admin@gmail.com",
                             EmailConfirmed = true,
                             FirstName = "admin",
@@ -942,10 +1175,10 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEECYFpSseRb1NEMurfLpNOxUBFbjldXaavUDNXxFYMgT4+Ru61xK/PSVIXKZ0/3HYg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEHXvYyrBY9P/fPKX+w4e2cq4vFhuxyzkAk5j+eF04rKn7hITa+GiTJIIMHnuf5KhRg==",
                             PhoneNumberConfirmed = false,
                             ProvinceId = 1,
-                            SecurityStamp = "4846f279-e62c-4dba-b28d-26846bf31d22",
+                            SecurityStamp = "22f1508c-7018-4f54-8c3a-64467e7652db",
                             TwoFactorEnabled = false,
                             UserName = "admin"
                         });
@@ -963,6 +1196,16 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                         .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -992,6 +1235,16 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
                     b.Property<double>("Rating")
                         .ValueGeneratedOnAdd()
@@ -1042,21 +1295,21 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "2f5d5c19-90f5-4423-81c1-cf8d966bb72c",
+                            ConcurrencyStamp = "eb2f291a-8ca9-4521-858d-9fbfedc9b50a",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "8bca79e2-b550-4686-971a-045041218ad3",
+                            ConcurrencyStamp = "9f5f6bba-e744-4276-bf26-97416cf02006",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         },
                         new
                         {
                             Id = 3,
-                            ConcurrencyStamp = "de9c9cbe-1133-4c28-9751-138d7318914e",
+                            ConcurrencyStamp = "8a76d1fe-d6d4-4110-95d0-9de5a4014741",
                             Name = "Expert",
                             NormalizedName = "EXPERT"
                         });
@@ -1243,7 +1496,7 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
             modelBuilder.Entity("Core_HomeService.Domain.Core.RequestAgg.Entities.Request", b =>
                 {
                     b.HasOne("Core_HomeService.Domain.Core.CityAgg.Entities.City", "City")
-                        .WithMany("Requests")
+                        .WithMany()
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1255,7 +1508,7 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                         .IsRequired();
 
                     b.HasOne("Core_HomeService.Domain.Core.ProvinceAgg.Entities.Province", "Province")
-                        .WithMany("Requests")
+                        .WithMany()
                         .HasForeignKey("ProvinceId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1306,7 +1559,7 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                         .IsRequired();
 
                     b.HasOne("Core_HomeService.Domain.Core.ProvinceAgg.Entities.Province", "Province")
-                        .WithMany("Users")
+                        .WithMany()
                         .HasForeignKey("ProvinceId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -1396,18 +1649,12 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
 
             modelBuilder.Entity("Core_HomeService.Domain.Core.CityAgg.Entities.City", b =>
                 {
-                    b.Navigation("Requests");
-
                     b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Core_HomeService.Domain.Core.ProvinceAgg.Entities.Province", b =>
                 {
                     b.Navigation("Cities");
-
-                    b.Navigation("Requests");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("Core_HomeService.Domain.Core.RequestAgg.Entities.Request", b =>

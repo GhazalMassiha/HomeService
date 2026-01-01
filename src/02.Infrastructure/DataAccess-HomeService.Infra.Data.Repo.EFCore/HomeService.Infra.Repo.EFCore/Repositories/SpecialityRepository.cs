@@ -1,4 +1,5 @@
-﻿using Core_HomeService.Domain.Core.SubCategoryAgg.Contracts.RepositoryContracts;
+﻿using Core_HomeService.Domain.Core.CategoryAgg.Entities;
+using Core_HomeService.Domain.Core.SubCategoryAgg.Contracts.RepositoryContracts;
 using Core_HomeService.Domain.Core.SubCategoryAgg.DTOs;
 using Core_HomeService.Domain.Core.SubCategoryAgg.Entities;
 using Core_HomeService.Infrastructure.Persistence;
@@ -96,11 +97,14 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
 
         public async Task<bool> Delete(int specialityId, CancellationToken cancellationToken)
         {
-            var affectedRows = await context.Specialities
-                .Where(sc => sc.Id == specialityId)
-                .ExecuteDeleteAsync(cancellationToken);
+            var speciality = await context.Specialities
+               .FirstOrDefaultAsync(c => c.Id == specialityId, cancellationToken);
 
-            return affectedRows > 0;
+            if (speciality == null)
+                return false;
+
+            speciality.IsDeleted = true;
+            return await context.SaveChangesAsync(cancellationToken) > 0;
         }
     }
 }

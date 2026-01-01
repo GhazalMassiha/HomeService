@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Core_HomeService.Domain.Core.SubCategoryAgg.DTOs;
 
 namespace Core_HomeService.Domain.Core.SpecialityAgg.Contracts.ServiceContracts
 {
-    internal class ISpecialityService
+    public interface ISpecialityService
     {
+        Task<SpecialityDto?> GetById(int id, CancellationToken cancellationToken);
+        Task<List<SpecialityDto>> GetAll(int page, int pageSize, CancellationToken cancellationToken);
+        Task<List<SpecialityDto>> GetByCategoryId(int page, int pageSize, int categoryId, CancellationToken cancellationToken);
+        Task<bool> Create(SpecialityCreateDto specialityCreateDto, CancellationToken cancellationToken);
+        Task<bool> Update(int specialityId, SpecialityCreateDto specialityCreateDto, CancellationToken cancellationToken);
+        Task<bool> Delete(int specialityId, CancellationToken cancellationToken);
     }
 }

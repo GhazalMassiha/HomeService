@@ -24,6 +24,13 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
                    .HasPrecision(18, 2)
                    .IsRequired();
 
+            builder.Property(c => c.IsDeleted)
+                .HasDefaultValue(false);
+
+            builder.Property(r => r.CreatedAt)
+                    .HasDefaultValueSql("GETUTCDATE()")
+                    .ValueGeneratedOnAdd();
+
 
             builder.HasData(
             new Speciality { Id = 1, Name = "بنایی", CategoryId = 1, Description = "انجام عملیات بنایی و ساخت دیوار، آجرکاری و تسطیح سطوح", BasePrice = 500000 },

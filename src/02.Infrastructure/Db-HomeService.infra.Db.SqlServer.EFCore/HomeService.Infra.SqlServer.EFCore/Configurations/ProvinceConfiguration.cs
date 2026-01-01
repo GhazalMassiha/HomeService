@@ -14,10 +14,20 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
                    .IsRequired()
                    .HasMaxLength(150);
 
+            builder.Property(c => c.IsDeleted)
+                .HasDefaultValue(false); 
+
+            builder.Property(r => r.CreatedAt)
+                    .HasDefaultValueSql("GETUTCDATE()")
+                    .ValueGeneratedOnAdd();
+
             builder.HasMany(p => p.Cities)
                    .WithOne(c => c.Province)
                    .HasForeignKey(c => c.ProvinceId)
+                   .IsRequired(false)
                    .OnDelete(DeleteBehavior.Restrict);
+
+
 
             builder.HasData(
                     new Province { Id = 1, Name = "تهران" },

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Core_HomeService.Domain.Core.CommentAgg.DTOs
+﻿namespace Core_HomeService.Domain.Core.CommentAgg.DTOs
 {
-    internal class CommentDto
+    public interface CommentDto
     {
     }
 }

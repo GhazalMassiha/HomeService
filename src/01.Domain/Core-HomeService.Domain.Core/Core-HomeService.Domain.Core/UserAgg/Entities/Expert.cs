@@ -1,12 +1,12 @@
-﻿using Core_HomeService.Domain.Core.CommentAgg.Entities;
+﻿using Core_HomeService.Domain.Core._common;
+using Core_HomeService.Domain.Core.CommentAgg.Entities;
 using Core_HomeService.Domain.Core.OfferAgg.Entities;
 using Core_HomeService.Domain.Core.SubCategoryAgg.Entities;
 
 namespace Core_HomeService.Domain.Core.UserAgg.Entities
 {
-    public class Expert
+    public class Expert : BaseEntity
     {
-        public int Id { get; set; }
         public int UserId { get; set; }
         public string CardNumber { get; set; }
         public string Biography { get; set; }

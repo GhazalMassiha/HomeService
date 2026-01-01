@@ -18,10 +18,21 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
                    .WithMany(p => p.Cities)
                    .HasForeignKey(c => c.ProvinceId);
 
+            builder.Property(c => c.IsDeleted)
+                .HasDefaultValue(false);
+
+            builder.Property(r => r.CreatedAt)
+                    .HasDefaultValueSql("GETUTCDATE()")
+                    .ValueGeneratedOnAdd();
+
             builder.HasMany(c => c.Users)
                    .WithOne(u => u.City)
                    .HasForeignKey(u => u.CityId)
+                   .IsRequired(false)
                    .OnDelete(DeleteBehavior.Restrict);
+
+
+
 
             builder.HasData(
                     new City { Id = 1, Name = "تهران", ProvinceId = 1 },

@@ -13,6 +13,13 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
             builder.Property(i => i.ImageUrl)
                    .IsRequired()
                    .HasMaxLength(500);
+
+            builder.Property(c => c.IsDeleted)
+                .HasDefaultValue(false);
+
+            builder.Property(r => r.CreatedAt)
+                    .HasDefaultValueSql("GETUTCDATE()")
+                    .ValueGeneratedOnAdd();
         }
     }
 }

@@ -8,20 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="CategoryAgg\Contracts\AppServiceContracts\" />
-    <Folder Include="CategoryAgg\Contracts\ServiceContracts\" />
-    <Folder Include="CityAgg\Contracts\AppServiceContracts\" />
-    <Folder Include="CityAgg\Contracts\RepositoryContracts\" />
-    <Folder Include="CityAgg\Contracts\ServiceContracts\" />
-    <Folder Include="CityAgg\DTOs\" />
-    <Folder Include="CommentAgg\Contracts\AppServiceContracts\" />
-    <Folder Include="CommentAgg\Contracts\RepositoryContracts\" />
-    <Folder Include="CommentAgg\Contracts\ServiceContracts\" />
-    <Folder Include="CommentAgg\DTOs\" />
-    <Folder Include="ImageAgg\Contracts\AppServiceContracts\" />
-    <Folder Include="ImageAgg\Contracts\RepositoryContracts\" />
-    <Folder Include="ImageAgg\Contracts\ServiceContracts\" />
-    <Folder Include="ImageAgg\DTOs\" />
     <Folder Include="OfferAgg\Contracts\AppServiceContracts\" />
     <Folder Include="OfferAgg\Contracts\RepositoryContracts\" />
     <Folder Include="OfferAgg\Contracts\ServiceContracts\" />
@@ -34,12 +20,14 @@
     <Folder Include="RequestAgg\Contracts\RepositoryContracts\" />
     <Folder Include="RequestAgg\Contracts\ServiceContracts\" />
     <Folder Include="RequestAgg\DTOs\" />
-    <Folder Include="SpecialityAgg\Contracts\AppServiceContracts\" />
-    <Folder Include="SpecialityAgg\Contracts\ServiceContracts\" />
-    <Folder Include="UserAgg\Contracts\AppServiceContracts\" />
-    <Folder Include="UserAgg\Contracts\ServiceContracts\" />
-    <Folder Include="UserAgg\Contracts\RepositoryContracts\" />
-    <Folder Include="UserAgg\DTOs\" />
+    <Folder Include="UserAgg\Contracts\AppServiceContracts\CustomerContract\" />
+    <Folder Include="UserAgg\Contracts\AppServiceContracts\ExpertContract\" />
+    <Folder Include="UserAgg\Contracts\RepositoryContracts\CustomerContract\" />
+    <Folder Include="UserAgg\Contracts\RepositoryContracts\ExpertContract\" />
+    <Folder Include="UserAgg\Contracts\ServiceContracts\CustomerContract\" />
+    <Folder Include="UserAgg\Contracts\ServiceContracts\ExpertContract\" />
+    <Folder Include="UserAgg\DTOs\ExpertDTOs\" />
+    <Folder Include="UserAgg\DTOs\CustomerDTOs\" />
   </ItemGroup>
 
   <ItemGroup>

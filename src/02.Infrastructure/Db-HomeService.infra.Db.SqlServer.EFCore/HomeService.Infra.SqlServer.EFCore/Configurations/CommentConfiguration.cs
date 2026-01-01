@@ -13,6 +13,12 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
             builder.Property(c => c.Text)
                    .HasMaxLength(2000);
 
+            builder.Property(c => c.IsDeleted)
+                .HasDefaultValue(false);
+
+            builder.Property(c => c.IsApproved)
+                .HasDefaultValue(false);
+
             builder.Property(c => c.CreatedAt)
                    .HasDefaultValueSql("GETUTCDATE()")
                    .ValueGeneratedOnAdd();

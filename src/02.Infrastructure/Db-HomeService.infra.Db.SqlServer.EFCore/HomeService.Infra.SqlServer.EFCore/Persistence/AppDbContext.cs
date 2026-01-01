@@ -37,6 +37,17 @@ namespace Core_HomeService.Infrastructure.Persistence
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Category>().HasQueryFilter(c => !c.IsDeleted);
+            modelBuilder.Entity<City>().HasQueryFilter(c => !c.IsDeleted);
+            modelBuilder.Entity<Province>().HasQueryFilter(c => !c.IsDeleted);
+            modelBuilder.Entity<Speciality>().HasQueryFilter(sc => !sc.IsDeleted);
+            modelBuilder.Entity<Comment>().HasQueryFilter(c => !c.IsDeleted);
+            modelBuilder.Entity<Request>().HasQueryFilter(r => !r.IsDeleted);
+            modelBuilder.Entity<Offer>().HasQueryFilter(o => !o.IsDeleted);
+            modelBuilder.Entity<RequestImage>().HasQueryFilter(i => !i.IsDeleted);
+            modelBuilder.Entity<Customer>().HasQueryFilter(c => !c.IsDeleted);
+            modelBuilder.Entity<Expert>().HasQueryFilter(e => !e.IsDeleted);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -44,24 +55,5 @@ namespace Core_HomeService.Infrastructure.Persistence
                 warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
             base.OnConfiguring(optionsBuilder);
         }
-
-        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-
-            modelBuilder.ApplyConfiguration(new ProvinceConfiguration());
-            modelBuilder.ApplyConfiguration(new CityConfiguration());
-            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
-            modelBuilder.ApplyConfiguration(new SubCategoryConfiguration());
-            modelBuilder.ApplyConfiguration(new ExpertSubCategoryConfiguration());
-            modelBuilder.ApplyConfiguration(new CustomerConfiguration());
-            modelBuilder.ApplyConfiguration(new ExpertConfiguration());
-            modelBuilder.ApplyConfiguration(new RequestConfiguration());
-            modelBuilder.ApplyConfiguration(new OfferConfiguration());
-            modelBuilder.ApplyConfiguration(new CommentConfiguration());
-            modelBuilder.ApplyConfiguration(new RequestImageConfiguration());
-            modelBuilder.ApplyConfiguration(new ApplicationUserConfiguration());
-        }*/
     }
 }

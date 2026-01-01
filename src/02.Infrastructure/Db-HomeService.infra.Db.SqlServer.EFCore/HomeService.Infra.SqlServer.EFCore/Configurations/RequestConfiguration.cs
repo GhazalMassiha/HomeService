@@ -24,6 +24,9 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
                    .HasDefaultValue(RequestStatusEnum.Pending)
                    .HasSentinel(RequestStatusEnum.Pending);
 
+            builder.Property(c => c.IsDeleted)
+                .HasDefaultValue(false);
+
             builder.Property(r => r.CreatedAt)
                    .HasDefaultValueSql("GETUTCDATE()")
                    .ValueGeneratedOnAdd(); 
@@ -31,26 +34,31 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
             builder.HasOne(r => r.Province)
                    .WithMany()
                    .HasForeignKey(r => r.ProvinceId)
+                   .IsRequired(false)
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(r => r.City)
                    .WithMany()
                    .HasForeignKey(r => r.CityId)
+                   .IsRequired(false)
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasMany(r => r.Offers)
                    .WithOne(o => o.Request)
                    .HasForeignKey(o => o.RequestId)
+                   .IsRequired(false)
                    .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(r => r.Comments)
                    .WithOne(co => co.Request)
                    .HasForeignKey(co => co.RequestId)
+                   .IsRequired(false)
                    .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(r => r.Images)
                    .WithOne(i => i.Request)
                    .HasForeignKey(i => i.RequestId)
+                   .IsRequired(false)
                    .OnDelete(DeleteBehavior.Cascade);
         }
     }

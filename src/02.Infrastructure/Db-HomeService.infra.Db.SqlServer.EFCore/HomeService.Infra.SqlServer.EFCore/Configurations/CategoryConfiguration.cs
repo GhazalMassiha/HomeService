@@ -17,10 +17,19 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
             builder.Property(c => c.ImageUrl)
                    .HasMaxLength(500);
 
+            builder.Property(c => c.IsDeleted)
+                .HasDefaultValue(false);
+
+            builder.Property(r => r.CreatedAt)
+                    .HasDefaultValueSql("GETUTCDATE()")
+                    .ValueGeneratedOnAdd();
+
             builder.HasMany(c => c.Specialities)
                    .WithOne(sc => sc.Category)
                    .HasForeignKey(sc => sc.CategoryId)
+                   .IsRequired(false)
                    .OnDelete(DeleteBehavior.Cascade);
+
 
             builder.HasData(
                new Category { Id = 1, Name = "دکوراسیون ساختمان" },

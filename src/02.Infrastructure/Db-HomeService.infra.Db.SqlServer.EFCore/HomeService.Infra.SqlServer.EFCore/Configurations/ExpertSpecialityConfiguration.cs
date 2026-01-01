@@ -13,11 +13,13 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
 
             builder.HasOne(x => x.Expert)
                    .WithMany(e => e.ExpertSpecialities)
-                   .HasForeignKey(x => x.ExpertId);
+                   .HasForeignKey(x => x.ExpertId)
+                   .IsRequired(false);
 
             builder.HasOne(x => x.Speciality)
                    .WithMany(sc => sc.ExpertSpecialities)
-                   .HasForeignKey(x => x.SpecialityId);
+                   .HasForeignKey(x => x.SpecialityId)
+                   .IsRequired(false);
         }
     }
 }

@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace HomeService.Infra.Db.SqlServer.Migrations
+namespace HomeService.Infra.SqlServer.EFCore.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -35,7 +35,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    ImageUrl = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true)
+                    ImageUrl = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -48,7 +50,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -85,7 +89,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                     Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     BasePrice = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
-                    CategoryId = table.Column<int>(type: "int", nullable: false)
+                    CategoryId = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -105,7 +111,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    ProvinceId = table.Column<int>(type: "int", nullable: false)
+                    ProvinceId = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -254,7 +262,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
+                    Address = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -276,7 +286,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     CardNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Biography = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
-                    Rating = table.Column<double>(type: "float", nullable: false, defaultValue: 0.0)
+                    Rating = table.Column<double>(type: "float", nullable: false, defaultValue: 0.0),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -301,8 +313,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                     Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "Pending"),
+                    ScheduledAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
-                    ScheduledAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -362,7 +375,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                     CustomerId = table.Column<int>(type: "int", nullable: false),
                     Rating = table.Column<int>(type: "int", nullable: false),
                     Text = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()")
+                    IsApproved = table.Column<bool>(type: "bit", nullable: false, defaultValue: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -399,7 +414,7 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                     Text = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
                     Status = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "Pending"),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
-                    ScheduledAt = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -425,7 +440,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ImageUrl = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    RequestId = table.Column<int>(type: "int", nullable: false)
+                    RequestId = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETUTCDATE()"),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false, defaultValue: false)
                 },
                 constraints: table =>
                 {
@@ -443,9 +460,9 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "2f5d5c19-90f5-4423-81c1-cf8d966bb72c", "Admin", "ADMIN" },
-                    { 2, "8bca79e2-b550-4686-971a-045041218ad3", "Customer", "CUSTOMER" },
-                    { 3, "de9c9cbe-1133-4c28-9751-138d7318914e", "Expert", "EXPERT" }
+                    { 1, "eb2f291a-8ca9-4521-858d-9fbfedc9b50a", "Admin", "ADMIN" },
+                    { 2, "9f5f6bba-e744-4276-bf26-97416cf02006", "Customer", "CUSTOMER" },
+                    { 3, "8a76d1fe-d6d4-4110-95d0-9de5a4014741", "Expert", "EXPERT" }
                 });
 
             migrationBuilder.InsertData(
@@ -562,7 +579,7 @@ namespace HomeService.Infra.Db.SqlServer.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "AccountBalance", "CityId", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "ImageUrl", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProvinceId", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, 0m, 1, "4ed2a916-6f99-429f-af9b-c2bf49bffd6b", "admin@gmail.com", true, "admin", null, "admin", false, null, "ADMIN@GMAIL.COM", "ADMIN", "AQAAAAIAAYagAAAAEECYFpSseRb1NEMurfLpNOxUBFbjldXaavUDNXxFYMgT4+Ru61xK/PSVIXKZ0/3HYg==", null, false, 1, "4846f279-e62c-4dba-b28d-26846bf31d22", false, "admin" });
+                values: new object[] { 1, 0, 0m, 1, "4e67dea3-3e64-46d3-b87f-9ba4aa1391f4", "admin@gmail.com", true, "admin", null, "admin", false, null, "ADMIN@GMAIL.COM", "ADMIN", "AQAAAAIAAYagAAAAEHXvYyrBY9P/fPKX+w4e2cq4vFhuxyzkAk5j+eF04rKn7hITa+GiTJIIMHnuf5KhRg==", null, false, 1, "22f1508c-7018-4f54-8c3a-64467e7652db", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUserRoles",
