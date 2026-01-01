@@ -1,33 +1,34 @@
-﻿using Core_HomeService.Domain.Core.CategoryAgg.Contracts.ServiceContracts;
+﻿using Core_HomeService.Domain.Core.CategoryAgg.Contracts.RepositoryContracts;
+using Core_HomeService.Domain.Core.CategoryAgg.Contracts.ServiceContracts;
 using Core_HomeService.Domain.Core.CategoryAgg.DTOs;
 
 namespace Service_HomeService.Domain.Service.Services
 {
-    public class CategoryService : ICategoryService
+    public class CategoryService(ICategoryRepository categoryRepository) : ICategoryService
     {
-        public Task<bool> Create(CategoryCreateDto categoryCreateDto, CancellationToken cancellationToken)
+        public async Task<bool> Create(CategoryCreateDto categoryCreateDto, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await categoryRepository.Create(categoryCreateDto, cancellationToken);
         }
 
-        public Task<bool> Delete(int categoryId, CancellationToken cancellationToken)
+        public async Task<bool> Delete(int categoryId, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await categoryRepository.Delete(categoryId, cancellationToken);
         }
 
-        public Task<List<CategoryDto>> GetAll(CancellationToken cancellationToken)
+        public async Task<List<CategoryDto>> GetAll(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await categoryRepository.GetAll(cancellationToken);
         }
 
-        public Task<CategoryDto?> GetById(int id, CancellationToken cancellationToken)
+        public async Task<CategoryDto?> GetById(int id, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await GetById(id, cancellationToken);
         }
 
-        public Task<bool> Update(int categoryId, CategoryCreateDto categoryCreateDto, CancellationToken cancellationToken)
+        public async Task<bool> Update(int categoryId, CategoryCreateDto categoryCreateDto, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            return await categoryRepository.Update(categoryId, categoryCreateDto, cancellationToken);
         }
     }
 }
