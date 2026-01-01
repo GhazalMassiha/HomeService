@@ -1,4 +1,5 @@
-﻿using Core_HomeService.Domain.Core.SpecialityAgg.Contracts.ServiceContracts;
+﻿using Core_HomeService.Domain.Core._common;
+using Core_HomeService.Domain.Core.SpecialityAgg.Contracts.ServiceContracts;
 using Core_HomeService.Domain.Core.SubCategoryAgg.Contracts.RepositoryContracts;
 using Core_HomeService.Domain.Core.SubCategoryAgg.DTOs;
 
@@ -16,14 +17,24 @@ namespace Service_HomeService.Domain.Service.Services
             return await specialityRepository.Delete(specialityId, cancellationToken);
         }
 
-        public async Task<List<SpecialityDto>> GetAll(int page, int pageSize, CancellationToken cancellationToken)
+        public async Task<List<SpecialityDto>> GetAll(CancellationToken cancellationToken)
         {
-            return await specialityRepository.GetAll(page, pageSize, cancellationToken);
+            return await specialityRepository.GetAll(cancellationToken);
         }
 
-        public async Task<List<SpecialityDto>> GetByCategoryId(int page, int pageSize, int categoryId, CancellationToken cancellationToken)
+        public async Task<PaginationResult<SpecialityDto>> GetAllPaged(int page, int pageSize, CancellationToken cancellationToken)
         {
-            return await specialityRepository.GetByCategoryId(page, pageSize, categoryId, cancellationToken);
+            return await specialityRepository.GetAllPaged(page , pageSize, cancellationToken);
+        }
+
+        public async Task<List<SpecialityDto>> GetByCategoryId(int categoryId, CancellationToken cancellationToken)
+        {
+            return await specialityRepository.GetByCategoryId(categoryId, cancellationToken);
+        }
+
+        public async Task<PaginationResult<SpecialityDto>> GetByCategoryIdPaged(int page, int pageSize, int categoryId, CancellationToken cancellationToken)
+        {
+            return await specialityRepository.GetByCategoryIdPaged(page, pageSize, categoryId, cancellationToken);
         }
 
         public async Task<SpecialityDto?> GetById(int id, CancellationToken cancellationToken)

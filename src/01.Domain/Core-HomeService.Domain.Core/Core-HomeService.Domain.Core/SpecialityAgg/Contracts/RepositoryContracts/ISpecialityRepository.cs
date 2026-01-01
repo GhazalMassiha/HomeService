@@ -1,4 +1,5 @@
-﻿using Core_HomeService.Domain.Core.SubCategoryAgg.DTOs;
+﻿using Core_HomeService.Domain.Core._common;
+using Core_HomeService.Domain.Core.SubCategoryAgg.DTOs;
 using Core_HomeService.Domain.Core.SubCategoryAgg.Entities;
 
 namespace Core_HomeService.Domain.Core.SubCategoryAgg.Contracts.RepositoryContracts
@@ -6,8 +7,10 @@ namespace Core_HomeService.Domain.Core.SubCategoryAgg.Contracts.RepositoryContra
     public interface ISpecialityRepository
     {
         Task<SpecialityDto?> GetById(int id, CancellationToken cancellationToken);
-        Task<List<SpecialityDto>> GetAll(int page, int pageSize, CancellationToken cancellationToken);
-        Task<List<SpecialityDto>> GetByCategoryId(int page, int pageSize, int categoryId, CancellationToken cancellationToken);
+        Task<List<SpecialityDto>> GetAll(CancellationToken cancellationToken);
+        Task<PaginationResult<SpecialityDto>> GetAllPaged(int page, int pageSize, CancellationToken cancellationToken);
+        Task<List<SpecialityDto>> GetByCategoryId(int categoryId, CancellationToken cancellationToken);
+        Task<PaginationResult<SpecialityDto>> GetByCategoryIdPaged(int page, int pageSize, int categoryId, CancellationToken cancellationToken);
         Task<bool> Create(SpecialityCreateDto specialityCreateDto, CancellationToken cancellationToken);
         Task<bool> Update(int specialityId, SpecialityCreateDto specialityCreateDto, CancellationToken cancellationToken);
         Task<bool> Delete(int specialityId, CancellationToken cancellationToken);

@@ -48,6 +48,7 @@ namespace Core_HomeService.Infrastructure.Persistence
             modelBuilder.Entity<RequestImage>().HasQueryFilter(i => !i.IsDeleted);
             modelBuilder.Entity<Customer>().HasQueryFilter(c => !c.IsDeleted);
             modelBuilder.Entity<Expert>().HasQueryFilter(e => !e.IsDeleted);
+            modelBuilder.Entity<ExpertSpeciality>().HasQueryFilter(es => es.ExpertId == null || !es.Speciality.IsDeleted);
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

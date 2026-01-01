@@ -1,7 +1,9 @@
-﻿using Core_HomeService.Domain.Core.CategoryAgg.Contracts.RepositoryContracts;
+﻿using Core_HomeService.Domain.Core._common;
+using Core_HomeService.Domain.Core.CategoryAgg.Contracts.RepositoryContracts;
 using Core_HomeService.Domain.Core.CategoryAgg.DTOs;
 using Core_HomeService.Domain.Core.CategoryAgg.Entities;
 using Core_HomeService.Infrastructure.Persistence;
+using HomeService.Infra.Repo.EFCore.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace HomeService.Infra.SqlServer.EFCore.Repositories
@@ -36,6 +38,21 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
 
                 })
                 .ToListAsync(cancellationToken);
+        }
+
+        public async Task<PaginationResult<CategoryDto>> GetAllPaged(int page, int pageSize, CancellationToken cancellationToken)
+        {
+           var query = context.Categories
+                .AsNoTracking()
+                .Select(c => new CategoryDto
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    ImageUrl = c.ImageUrl
+
+                });
+
+            return await query.ToPaginatedResult(page, pageSize, cancellationToken);
         }
 
         public async Task<bool> Create(CategoryCreateDto categoryCreateDto, CancellationToken cancellationToken)

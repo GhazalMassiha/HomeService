@@ -1,4 +1,5 @@
-﻿using Core_HomeService.Domain.Core.CategoryAgg.Contracts.RepositoryContracts;
+﻿using Core_HomeService.Domain.Core._common;
+using Core_HomeService.Domain.Core.CategoryAgg.Contracts.RepositoryContracts;
 using Core_HomeService.Domain.Core.CategoryAgg.Contracts.ServiceContracts;
 using Core_HomeService.Domain.Core.CategoryAgg.DTOs;
 
@@ -21,9 +22,14 @@ namespace Service_HomeService.Domain.Service.Services
             return await categoryRepository.GetAll(cancellationToken);
         }
 
+        public async Task<PaginationResult<CategoryDto>> GetAllPaged(int page, int pageSize, CancellationToken cancellationToken)
+        {
+            return await categoryRepository.GetAllPaged(page, pageSize, cancellationToken);
+        }
+
         public async Task<CategoryDto?> GetById(int id, CancellationToken cancellationToken)
         {
-            return await GetById(id, cancellationToken);
+            return await categoryRepository.GetById(id, cancellationToken);
         }
 
         public async Task<bool> Update(int categoryId, CategoryCreateDto categoryCreateDto, CancellationToken cancellationToken)

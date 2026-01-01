@@ -1,7 +1,7 @@
 ﻿using Core_HomeService.Domain.Core._common;
 using Microsoft.EntityFrameworkCore;
 
-namespace AppService_HomeService.Domain.AppService.Extensions
+namespace HomeService.Infra.Repo.EFCore.Extensions
 {
     public static class PaginationExtensions
     {

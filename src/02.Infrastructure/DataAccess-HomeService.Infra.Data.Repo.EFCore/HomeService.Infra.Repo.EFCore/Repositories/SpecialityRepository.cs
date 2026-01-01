@@ -1,10 +1,10 @@
-﻿using Core_HomeService.Domain.Core.CategoryAgg.Entities;
+﻿using Core_HomeService.Domain.Core._common;
 using Core_HomeService.Domain.Core.SubCategoryAgg.Contracts.RepositoryContracts;
 using Core_HomeService.Domain.Core.SubCategoryAgg.DTOs;
 using Core_HomeService.Domain.Core.SubCategoryAgg.Entities;
 using Core_HomeService.Infrastructure.Persistence;
+using HomeService.Infra.Repo.EFCore.Extensions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Identity.Client;
 
 namespace HomeService.Infra.SqlServer.EFCore.Repositories
 {
@@ -27,13 +27,11 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
                 .FirstOrDefaultAsync(cancellationToken);
         }
 
-        public async Task<List<SpecialityDto>> GetAll(int page, int pageSize, CancellationToken cancellationToken)
+        public async Task<List<SpecialityDto>> GetAll(CancellationToken cancellationToken)
         {
             return await context.Specialities
                 .AsNoTracking()
-                .OrderBy(sc => sc.Name)                      
-                .Skip((page - 1) * pageSize)                 
-                .Take(pageSize)
+                .OrderBy(sc => sc.Name)
                 .Select(sc => new SpecialityDto
                 {
                     Id = sc.Id,
@@ -46,14 +44,29 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
                 .ToListAsync(cancellationToken);
         }
 
-        public async Task<List<SpecialityDto>> GetByCategoryId(int page, int pageSize, int categoryId, CancellationToken cancellationToken)
+        public async Task<PaginationResult<SpecialityDto>> GetAllPaged(int page, int pageSize, CancellationToken cancellationToken)
+        {
+            var query = context.Specialities
+                .AsNoTracking()
+                .OrderBy(sc => sc.Name)
+                .Select(sc => new SpecialityDto
+                {
+                    Id = sc.Id,
+                    Name = sc.Name,
+                    Description = sc.Description,
+                    BasePrice = sc.BasePrice,
+                    CategoryId = sc.CategoryId
+                });
+
+            return await query.ToPaginatedResult(page, pageSize, cancellationToken);
+        }
+
+        public async Task<List<SpecialityDto>> GetByCategoryId(int categoryId, CancellationToken cancellationToken)
         {
             return await context.Specialities
                 .AsNoTracking()
-                .Where(sc => sc.CategoryId  == categoryId)
+                .Where(sc => sc.CategoryId == categoryId)
                 .OrderBy(c => c.Name)
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
                 .Select(sc => new SpecialityDto
                 {
                     Id = sc.Id,
@@ -64,6 +77,25 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
 
                 })
                 .ToListAsync(cancellationToken);
+        }
+
+        public async Task<PaginationResult<SpecialityDto>> GetByCategoryIdPaged(int page, int pageSize, int categoryId, CancellationToken cancellationToken)
+        {
+            var query = context.Specialities
+                .AsNoTracking()
+                .Where(sc => sc.CategoryId == categoryId)
+                .OrderBy(c => c.Name)
+                .Select(sc => new SpecialityDto
+                {
+                    Id = sc.Id,
+                    Name = sc.Name,
+                    Description = sc.Description,
+                    BasePrice = sc.BasePrice,
+                    CategoryId = sc.CategoryId
+
+                });
+
+            return await query.ToPaginatedResult(page, pageSize, cancellationToken);
         }
 
         public async Task<bool> Create(SpecialityCreateDto specialityCreateDto, CancellationToken cancellationToken)
