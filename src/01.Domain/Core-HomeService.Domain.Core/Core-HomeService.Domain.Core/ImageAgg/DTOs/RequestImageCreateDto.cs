@@ -1,8 +1,7 @@
 ﻿namespace Core_HomeService.Domain.Core.ImageAgg.DTOs
 {
-    public class RequestImageDto
+    public class RequestImageCreateDto
     {
-        public int Id { get; set; }
         public string ImageUrl { get; set; }
         public int RequestId { get; set; }
     }

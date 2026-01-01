@@ -8,14 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="OfferAgg\Contracts\AppServiceContracts\" />
-    <Folder Include="OfferAgg\Contracts\RepositoryContracts\" />
-    <Folder Include="OfferAgg\Contracts\ServiceContracts\" />
-    <Folder Include="OfferAgg\DTOs\" />
-    <Folder Include="RequestAgg\Contracts\AppServiceContracts\" />
-    <Folder Include="RequestAgg\Contracts\RepositoryContracts\" />
-    <Folder Include="RequestAgg\Contracts\ServiceContracts\" />
-    <Folder Include="RequestAgg\DTOs\" />
     <Folder Include="UserAgg\Contracts\AppServiceContracts\CustomerContract\" />
     <Folder Include="UserAgg\Contracts\AppServiceContracts\ExpertContract\" />
     <Folder Include="UserAgg\Contracts\RepositoryContracts\CustomerContract\" />
