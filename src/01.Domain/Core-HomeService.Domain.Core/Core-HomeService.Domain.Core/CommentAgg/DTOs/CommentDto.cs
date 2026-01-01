@@ -1,6 +1,6 @@
 ﻿namespace Core_HomeService.Domain.Core.CommentAgg.DTOs
 {
-    public interface CommentDto
+    public class CommentDto
     {
         public int Id { get; set; } 
         public int RequestId { get; set; }
