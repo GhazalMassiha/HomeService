@@ -1,4 +1,4 @@
-﻿namespace Core_HomeService.Domain.Core.ImageAgg.DTOs
+﻿namespace Core_HomeService.Domain.Core.RequestImageAgg.DTOs
 {
     public class RequestImageDto
     {

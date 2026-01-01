@@ -75,7 +75,7 @@ namespace HomeService.Infra.Repo.EFCore.Repositories
         public async Task<bool> Delete(int id, CancellationToken cancellationToken)
         {
             var province = await context.Provinces
-                .FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
+                .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
 
             if (province == null)
                 return false;
