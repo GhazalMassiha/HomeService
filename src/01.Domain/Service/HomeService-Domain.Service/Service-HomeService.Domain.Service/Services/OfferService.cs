@@ -22,6 +22,11 @@ namespace Service_HomeService.Domain.Service.Services
             return await offerRepository.GetAllPaged(page, pageSize, cancellationToken);
         }
 
+        public async Task<PaginationResult<OfferDto>> GetByExpertIdPaged(int page, int pageSize, int expertId, CancellationToken cancellationToken)
+        {
+            return await offerRepository.GetByExpertIdPaged(page, pageSize, expertId, cancellationToken);
+        }
+
         public async Task<OfferDto?> GetById(int id, CancellationToken cancellationToken)
         {
             return await offerRepository.GetById(id, cancellationToken);

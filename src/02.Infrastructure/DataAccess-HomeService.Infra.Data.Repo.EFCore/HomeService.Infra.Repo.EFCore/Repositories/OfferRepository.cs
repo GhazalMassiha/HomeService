@@ -47,6 +47,26 @@ namespace HomeService.Infra.Repo.EFCore.Repositories
             return await query.ToPaginatedResult(page, pageSize, cancellationToken);
         }
 
+        public async Task<PaginationResult<OfferDto>> GetByExpertIdPaged(int page, int pageSize, int expertId, CancellationToken cancellationToken)
+        {
+            var query = context.Offers
+               .AsNoTracking()
+               .Where(e => e.ExpertId == expertId)
+               .OrderByDescending(e => e.CreatedAt)
+               .Select(o => new OfferDto
+               {
+                   Id = o.Id,
+                   ExpertId = o.ExpertId,
+                   RequestId = o.RequestId,
+                   Price = o.Price,
+                   Text = o.Text,
+                   Status = o.Status
+
+               });
+
+            return await query.ToPaginatedResult(page, pageSize, cancellationToken);
+        }
+
         public async Task<bool> Create(OfferCreateDto dto, CancellationToken cancellationToken)
         {
             var offer = new Offer
