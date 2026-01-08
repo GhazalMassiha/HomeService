@@ -3,6 +3,7 @@ using Core_HomeService.Domain.Core.ProvinceAgg.Entities;
 using Core_HomeService.Domain.Core.RequestAgg.Contracts.RepositoryContracts;
 using Core_HomeService.Domain.Core.RequestAgg.DTOs;
 using Core_HomeService.Domain.Core.RequestAgg.Entities;
+using Core_HomeService.Domain.Core.UserAgg.Entities;
 using Core_HomeService.Infrastructure.Persistence;
 using HomeService.Infra.Repo.EFCore.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +37,75 @@ namespace HomeService.Infra.Repo.EFCore.Repositories
         {
             var query = context.Requests
                 .AsNoTracking()
+                .OrderByDescending(r => r.CreatedAt)
+                .Select(r => new RequestDto
+                {
+                    Id = r.Id,
+                    CustomerId = r.CustomerId,
+                    ProvinceId = r.ProvinceId,
+                    CityId = r.CityId,
+                    Title = r.Title,
+                    Description = r.Description,
+                    Status = r.Status,
+                    CreatedAt = r.CreatedAt,
+                    ScheduledAt = r.ScheduledAt
+
+                });
+
+            return await query.ToPaginatedResult(page, pageSize, cancellationToken);
+        }
+
+        public async Task<PaginationResult<RequestDto>> GetByCustomerIdPaged(int page, int pageSize, int customerId, CancellationToken cancellationToken)
+        {
+            var query = context.Requests
+                .AsNoTracking()
+                .Where(r => r.CustomerId == customerId)
+                .OrderByDescending(r => r.CreatedAt)
+                .Select(r => new RequestDto
+                {
+                    Id = r.Id,
+                    CustomerId = r.CustomerId,
+                    ProvinceId = r.ProvinceId,
+                    CityId = r.CityId,
+                    Title = r.Title,
+                    Description = r.Description,
+                    Status = r.Status,
+                    CreatedAt = r.CreatedAt,
+                    ScheduledAt = r.ScheduledAt
+
+                });
+
+            return await query.ToPaginatedResult(page, pageSize, cancellationToken);
+        }
+
+        public async Task<PaginationResult<RequestDto>> GetByCategoryIdPaged(int page, int pageSize, int categoryId, CancellationToken cancellationToken)
+        {
+            var query = context.Requests
+                .AsNoTracking()
+                .Where(r => r.CategoryId == categoryId)
+                .OrderByDescending(r => r.CreatedAt)
+                .Select(r => new RequestDto
+                {
+                    Id = r.Id,
+                    CustomerId = r.CustomerId,
+                    ProvinceId = r.ProvinceId,
+                    CityId = r.CityId,
+                    Title = r.Title,
+                    Description = r.Description,
+                    Status = r.Status,
+                    CreatedAt = r.CreatedAt,
+                    ScheduledAt = r.ScheduledAt
+
+                });
+
+            return await query.ToPaginatedResult(page, pageSize, cancellationToken);
+        }
+
+        public async Task<PaginationResult<RequestDto>> GetBySpecialityIdPaged(int page, int pageSize, int specialityId, CancellationToken cancellationToken)
+        {
+            var query = context.Requests
+                .AsNoTracking()
+                .Where(r => r.SpecialityId == specialityId)
                 .OrderByDescending(r => r.CreatedAt)
                 .Select(r => new RequestDto
                 {

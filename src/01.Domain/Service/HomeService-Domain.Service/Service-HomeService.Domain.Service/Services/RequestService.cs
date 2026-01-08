@@ -22,9 +22,24 @@ namespace Service_HomeService.Domain.Service.Services
             return await requestRepository.GetAllPaged(page, pageSize, cancellationToken);
         }
 
+        public async Task<PaginationResult<RequestDto>> GetByCategoryIdPaged(int page, int pageSize, int categoryId, CancellationToken cancellationToken)
+        {
+            return await requestRepository.GetByCategoryIdPaged(page, pageSize, categoryId, cancellationToken);
+        }
+
+        public async Task<PaginationResult<RequestDto>> GetByCustomerIdPaged(int page, int pageSize, int customerId, CancellationToken cancellationToken)
+        {
+            return await requestRepository.GetByCustomerIdPaged(page, pageSize, customerId, cancellationToken);
+        }
+
         public async Task<RequestDto?> GetById(int id, CancellationToken cancellationToken)
         {
             return await requestRepository.GetById(id, cancellationToken);
+        }
+
+        public async Task<PaginationResult<RequestDto>> GetBySpecialityIdPaged(int page, int pageSize, int specialityId, CancellationToken cancellationToken)
+        {
+            return await requestRepository.GetBySpecialityIdPaged(page, pageSize, specialityId, cancellationToken);
         }
 
         public async Task<bool> Update(int id, RequestUpdateDto dto, CancellationToken cancellationToken)

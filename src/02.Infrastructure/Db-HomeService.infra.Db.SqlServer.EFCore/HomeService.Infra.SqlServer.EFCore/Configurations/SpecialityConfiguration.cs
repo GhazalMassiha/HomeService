@@ -31,6 +31,12 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
                     .HasDefaultValueSql("GETUTCDATE()")
                     .ValueGeneratedOnAdd();
 
+            builder.HasMany(c => c.Requests)
+                  .WithOne(sc => sc.Speciality)
+                  .HasForeignKey(sc => sc.SpecialityId)
+                  .IsRequired(false)
+                  .OnDelete(DeleteBehavior.Restrict);
+
 
             builder.HasData(
             new Speciality { Id = 1, Name = "بنایی", CategoryId = 1, Description = "انجام عملیات بنایی و ساخت دیوار، آجرکاری و تسطیح سطوح", BasePrice = 500000 },

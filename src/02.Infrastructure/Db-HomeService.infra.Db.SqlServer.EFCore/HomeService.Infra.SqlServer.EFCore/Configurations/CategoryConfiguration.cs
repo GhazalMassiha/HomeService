@@ -30,6 +30,12 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
                    .IsRequired(false)
                    .OnDelete(DeleteBehavior.Cascade);
 
+            builder.HasMany(c => c.Requests)
+                   .WithOne(sc => sc.Category)
+                   .HasForeignKey(sc => sc.CategoryId)
+                   .IsRequired(false)
+                   .OnDelete(DeleteBehavior.Restrict);
+
 
             builder.HasData(
                new Category { Id = 1, Name = "دکوراسیون ساختمان" },
