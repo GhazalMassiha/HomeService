@@ -20,8 +20,10 @@ namespace HomeService.Infra.Repo.EFCore.Repositories
 
         public async Task<bool> Transfer(int customerUserId, int expertUserId, decimal amount, CancellationToken cancellationToken)
         {
+            if (amount <= 0)
+                return false;
 
-            var transaction = await context.Database.BeginTransactionAsync(cancellationToken);
+            await using var transaction = await context.Database.BeginTransactionAsync(cancellationToken);
 
             var customerBalanceResult = await context.Users
                 .Where(u => u.Id == customerUserId && u.AccountBalance >= amount)

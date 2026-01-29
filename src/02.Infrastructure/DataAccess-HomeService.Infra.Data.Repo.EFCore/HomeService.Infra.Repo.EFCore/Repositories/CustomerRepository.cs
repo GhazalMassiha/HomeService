@@ -59,12 +59,7 @@ namespace HomeService.Infra.Repo.EFCore.Repositories
             var affectedRows = await context.Customers
                 .Where(c => c.Id == id)
                 .ExecuteUpdateAsync(setter => setter
-                    .SetProperty(c => c.User.FirstName, dto.FirstName)
-                    .SetProperty(c => c.User.LastName, dto.LastName)
-                    .SetProperty(c => c.Address, dto.Address)
-                    .SetProperty(c => c.User.CityId, dto.CityId)
-                    .SetProperty(c => c.User.ProvinceId, dto.ProvinceId)
-                    .SetProperty(c => c.User.ImageUrl, dto.ImageUrl),
+                    .SetProperty(c => c.Address, dto.Address),
                     cancellationToken);
 
             return affectedRows > 0;
