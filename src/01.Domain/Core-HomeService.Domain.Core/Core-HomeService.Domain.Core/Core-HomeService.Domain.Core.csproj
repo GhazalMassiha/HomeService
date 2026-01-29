@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="UserAgg\Contracts\AppServiceContracts\CustomerContract\" />
     <Folder Include="UserAgg\Contracts\AppServiceContracts\ExpertContract\" />
-    <Folder Include="UserAgg\Contracts\AppServiceContracts\AccountContract\" />
     <Folder Include="UserAgg\Contracts\AppServiceContracts\WalletContract\" />
   </ItemGroup>
 
