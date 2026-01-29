@@ -12,12 +12,8 @@
     <Folder Include="UserAgg\Contracts\AppServiceContracts\ExpertContract\" />
     <Folder Include="UserAgg\Contracts\AppServiceContracts\AccountContract\" />
     <Folder Include="UserAgg\Contracts\AppServiceContracts\WalletContract\" />
-    <Folder Include="UserAgg\Contracts\RepositoryContracts\CustomerContract\" />
-    <Folder Include="UserAgg\Contracts\RepositoryContracts\ExpertContract\" />
-    <Folder Include="UserAgg\Contracts\ServiceContracts\CustomerContract\" />
     <Folder Include="UserAgg\Contracts\ServiceContracts\ExpertContract\" />
     <Folder Include="UserAgg\DTOs\ExpertDTOs\" />
-    <Folder Include="UserAgg\DTOs\CustomerDTOs\" />
   </ItemGroup>
 
   <ItemGroup>
