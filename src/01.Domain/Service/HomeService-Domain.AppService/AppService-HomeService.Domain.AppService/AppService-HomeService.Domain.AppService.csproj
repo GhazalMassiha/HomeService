@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="AppServices\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\..\..\02.Infrastructure\DataAccess-HomeService.Infra.Data.Repo.EFCore\HomeService.Infra.Repo.EFCore\HomeService.Infra.Repo.EFCore.csproj" />
     <ProjectReference Include="..\..\..\Core-HomeService.Domain.Core\Core-HomeService.Domain.Core\Core-HomeService.Domain.Core.csproj" />
   </ItemGroup>
