@@ -38,14 +38,13 @@ namespace HomeService.Infra.Repo.EFCore.Repositories
 
         public async Task<bool> Delete(int id, CancellationToken cancellationToken)
         {
-            var img = await context.RequestImages
-                .FirstOrDefaultAsync(r => r.Id == id, cancellationToken);
+            var affectedRows = await context.RequestImages
+                 .Where(c => c.Id == id)
+                 .ExecuteUpdateAsync(setter => setter
+                 .SetProperty(c => c.IsDeleted, true),
+                     cancellationToken);
 
-            if (img == null) 
-                return false;
-
-            img.IsDeleted = true;
-            return await context.SaveChangesAsync(cancellationToken) > 0;
+            return affectedRows > 0;
         }
     }
 }

@@ -74,14 +74,13 @@ namespace HomeService.Infra.Repo.EFCore.Repositories
 
         public async Task<bool> Delete(int id, CancellationToken cancellationToken)
         {
-            var province = await context.Provinces
-                .FirstOrDefaultAsync(p => p.Id == id, cancellationToken);
+            var affectedRows = await context.Provinces
+                 .Where(c => c.Id == id)
+                 .ExecuteUpdateAsync(setter => setter
+                 .SetProperty(c => c.IsDeleted, true),
+                     cancellationToken);
 
-            if (province == null)
-                return false;
-
-            province.IsDeleted = true;
-            return await context.SaveChangesAsync(cancellationToken) > 0;
+            return affectedRows > 0;
         }
     }
 }

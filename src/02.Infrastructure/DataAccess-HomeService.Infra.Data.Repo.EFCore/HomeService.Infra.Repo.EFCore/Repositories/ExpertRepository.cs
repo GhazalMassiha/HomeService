@@ -70,14 +70,13 @@ namespace HomeService.Infra.Repo.EFCore.Repositories
 
         public async Task<bool> Delete(int id, CancellationToken cancellationToken)
         {
-            var expert = await context.Experts
-                 .FirstOrDefaultAsync(o => o.Id == id, cancellationToken);
+            var affectedRows = await context.Experts
+                 .Where(c => c.Id == id)
+                 .ExecuteUpdateAsync(setter => setter
+                 .SetProperty(c => c.IsDeleted, true),
+                     cancellationToken);
 
-            if (expert == null)
-                return false;
-
-            expert.IsDeleted = true;
-            return await context.SaveChangesAsync(cancellationToken) > 0;
+            return affectedRows > 0;
         }
     }
 }

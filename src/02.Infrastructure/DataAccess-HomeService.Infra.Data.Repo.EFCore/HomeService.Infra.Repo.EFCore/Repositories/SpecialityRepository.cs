@@ -129,14 +129,13 @@ namespace HomeService.Infra.SqlServer.EFCore.Repositories
 
         public async Task<bool> Delete(int specialityId, CancellationToken cancellationToken)
         {
-            var speciality = await context.Specialities
-               .FirstOrDefaultAsync(c => c.Id == specialityId, cancellationToken);
+            var affectedRows = await context.Specialities
+                  .Where(c => c.Id == specialityId)
+                  .ExecuteUpdateAsync(setter => setter
+                  .SetProperty(c => c.IsDeleted, true),
+                      cancellationToken);
 
-            if (speciality == null)
-                return false;
-
-            speciality.IsDeleted = true;
-            return await context.SaveChangesAsync(cancellationToken) > 0;
+            return affectedRows > 0;
         }
     }
 }

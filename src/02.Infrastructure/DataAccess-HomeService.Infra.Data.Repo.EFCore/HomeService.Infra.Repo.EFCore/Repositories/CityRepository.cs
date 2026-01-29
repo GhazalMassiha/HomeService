@@ -1,4 +1,5 @@
 ﻿using Core_HomeService.Domain.Core._common;
+using Core_HomeService.Domain.Core.CategoryAgg.Entities;
 using Core_HomeService.Domain.Core.CityAgg.Contracts.RepositoryContracts;
 using Core_HomeService.Domain.Core.CityAgg.DTOs;
 using Core_HomeService.Domain.Core.CityAgg.Entities;
@@ -153,14 +154,13 @@ namespace HomeService.Infra.Repo.EFCore.Repositories
 
         public async Task<bool> Delete(int id, CancellationToken cancellationToken)
         {
-            var city = await context.Cities
-                .FirstOrDefaultAsync(c => c.Id == id, cancellationToken);
+            var affectedRows = await context.Cities
+                 .Where(c => c.Id == id)
+                 .ExecuteUpdateAsync(setter => setter
+                 .SetProperty(c => c.IsDeleted, true),
+                     cancellationToken);
 
-            if (city == null)
-                return false;
-
-            city.IsDeleted = true;
-            return await context.SaveChangesAsync(cancellationToken) > 0;
+            return affectedRows > 0;
         }
     }
 }
