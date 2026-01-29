@@ -1,10 +1,9 @@
 ﻿using Core_HomeService.Domain.Core._common;
-using Core_HomeService.Domain.Core.UserAgg.DTOs.CustomerDTOs;
 using Core_HomeService.Domain.Core.UserAgg.DTOs.ExpertDTOs;
 
-namespace Core_HomeService.Domain.Core.UserAgg.Contracts.RepositoryContracts.ExpertContract
+namespace Core_HomeService.Domain.Core.UserAgg.Contracts.ServiceContracts.ExpertContract
 {
-    public interface IExpertRepository
+    public interface IExpertService
     {
         Task<ExpertDto?> GetById(int id, CancellationToken cancellationToken);
         Task<PaginationResult<ExpertDto>> GetAllPaged(int page, int pageSize, CancellationToken cancellationToken);
