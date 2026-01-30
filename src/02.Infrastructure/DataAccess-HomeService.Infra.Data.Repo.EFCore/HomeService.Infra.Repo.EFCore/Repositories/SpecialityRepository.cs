@@ -1,7 +1,7 @@
 ﻿using Core_HomeService.Domain.Core._common;
-using Core_HomeService.Domain.Core.SubCategoryAgg.Contracts.RepositoryContracts;
-using Core_HomeService.Domain.Core.SubCategoryAgg.DTOs;
-using Core_HomeService.Domain.Core.SubCategoryAgg.Entities;
+using Core_HomeService.Domain.Core.SpecialityAgg.Contracts.RepositoryContracts;
+using Core_HomeService.Domain.Core.SpecialityAgg.DTOs;
+using Core_HomeService.Domain.Core.SpecialityAgg.Entities;
 using Core_HomeService.Infrastructure.Persistence;
 using HomeService.Infra.Repo.EFCore.Extensions;
 using Microsoft.EntityFrameworkCore;

@@ -1,5 +1,5 @@
 ﻿using Core_HomeService.Domain.Core._common;
-using Core_HomeService.Domain.Core.SubCategoryAgg.DTOs;
+using Core_HomeService.Domain.Core.SpecialityAgg.DTOs;
 
 namespace Core_HomeService.Domain.Core.SpecialityAgg.Contracts.ServiceContracts
 {

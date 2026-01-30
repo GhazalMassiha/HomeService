@@ -5,7 +5,7 @@ using Core_HomeService.Domain.Core.ImageAgg.Entities;
 using Core_HomeService.Domain.Core.OfferAgg.Entities;
 using Core_HomeService.Domain.Core.ProvinceAgg.Entities;
 using Core_HomeService.Domain.Core.RequestAgg.Entities;
-using Core_HomeService.Domain.Core.SubCategoryAgg.Entities;
+using Core_HomeService.Domain.Core.SpecialityAgg.Entities;
 using Core_HomeService.Domain.Core.UserAgg.Entities;
 using HomeService.Infra.SqlServer.EFCore.Configurations;
 using Microsoft.AspNetCore.Identity;

@@ -2,7 +2,7 @@
 using Core_HomeService.Domain.Core.CategoryAgg.Entities;
 using Core_HomeService.Domain.Core.RequestAgg.Entities;
 
-namespace Core_HomeService.Domain.Core.SubCategoryAgg.Entities
+namespace Core_HomeService.Domain.Core.SpecialityAgg.Entities
 {
     public class Speciality : BaseEntity
     {

@@ -1,7 +1,7 @@
 ﻿using Core_HomeService.Domain.Core._common;
 using Core_HomeService.Domain.Core.SpecialityAgg.Contracts.AppServiceContracts;
 using Core_HomeService.Domain.Core.SpecialityAgg.Contracts.ServiceContracts;
-using Core_HomeService.Domain.Core.SubCategoryAgg.DTOs;
+using Core_HomeService.Domain.Core.SpecialityAgg.DTOs;
 
 namespace AppService_HomeService.Domain.AppService.AppServices
 {

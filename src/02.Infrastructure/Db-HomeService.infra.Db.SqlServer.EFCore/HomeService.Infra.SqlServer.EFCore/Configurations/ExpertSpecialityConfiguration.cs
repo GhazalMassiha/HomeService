@@ -1,4 +1,4 @@
-﻿using Core_HomeService.Domain.Core.SubCategoryAgg.Entities;
+﻿using Core_HomeService.Domain.Core.SpecialityAgg.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

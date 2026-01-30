@@ -1,6 +1,6 @@
 ﻿using Core_HomeService.Domain.Core.UserAgg.Entities;
 
-namespace Core_HomeService.Domain.Core.SubCategoryAgg.Entities
+namespace Core_HomeService.Domain.Core.SpecialityAgg.Entities
 {
     public class ExpertSpeciality
     {

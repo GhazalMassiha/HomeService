@@ -1,7 +1,7 @@
 ﻿using Core_HomeService.Domain.Core._common;
 using Core_HomeService.Domain.Core.CommentAgg.Entities;
 using Core_HomeService.Domain.Core.OfferAgg.Entities;
-using Core_HomeService.Domain.Core.SubCategoryAgg.Entities;
+using Core_HomeService.Domain.Core.SpecialityAgg.Entities;
 
 namespace Core_HomeService.Domain.Core.UserAgg.Entities
 {

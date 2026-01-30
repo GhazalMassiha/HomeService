@@ -1,8 +1,8 @@
 ﻿using Core_HomeService.Domain.Core._common;
-using Core_HomeService.Domain.Core.SubCategoryAgg.DTOs;
-using Core_HomeService.Domain.Core.SubCategoryAgg.Entities;
+using Core_HomeService.Domain.Core.SpecialityAgg.DTOs;
+using Core_HomeService.Domain.Core.SpecialityAgg.Entities;
 
-namespace Core_HomeService.Domain.Core.SubCategoryAgg.Contracts.RepositoryContracts
+namespace Core_HomeService.Domain.Core.SpecialityAgg.Contracts.RepositoryContracts
 {
     public interface ISpecialityRepository
     {

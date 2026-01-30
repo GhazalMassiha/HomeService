@@ -1,11 +1,11 @@
 ﻿using Core_HomeService.Domain.Core._common;
 using Core_HomeService.Domain.Core.SpecialityAgg.Contracts.ServiceContracts;
-using Core_HomeService.Domain.Core.SubCategoryAgg.Contracts.RepositoryContracts;
-using Core_HomeService.Domain.Core.SubCategoryAgg.DTOs;
+using Core_HomeService.Domain.Core.SpecialityAgg.Contracts.RepositoryContracts;
+using Core_HomeService.Domain.Core.SpecialityAgg.DTOs;
 
 namespace Service_HomeService.Domain.Service.Services
 {
-    public class SepcialityService(ISpecialityRepository specialityRepository) : ISpecialityService
+    public class SpecialityService(ISpecialityRepository specialityRepository) : ISpecialityService
     {
         public async Task<bool> Create(SpecialityCreateDto specialityCreateDto, CancellationToken cancellationToken)
         {

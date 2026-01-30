@@ -1,4 +1,4 @@
-﻿namespace Core_HomeService.Domain.Core.SubCategoryAgg.DTOs
+﻿namespace Core_HomeService.Domain.Core.SpecialityAgg.DTOs
 {
     public class SpecialityDto
     {
