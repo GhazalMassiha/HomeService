@@ -7,7 +7,8 @@ namespace Core_HomeService.Domain.Core.UserAgg.Contracts.AppServiceContracts.Acc
 {
     public interface IAccountAppService
     {
-        Task<Result<bool>> Register(RegisterDto dto, CancellationToken cancellationToken);
-        Task<Result<bool>> Login(LoginDto dto, CancellationToken cancellationToken);
+        Task<Result<bool>> Register(RegisterDto dto);
+        Task<Result<bool>> Login(LoginDto dto);
+        Task<Result<bool>> Logout();
     }
 }

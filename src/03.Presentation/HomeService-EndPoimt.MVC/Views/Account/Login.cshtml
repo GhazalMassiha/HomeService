@@ -1,0 +1,42 @@
+﻿@* @model Core_HomeService.Domain.Core.UserAgg.DTOs.AccountDTOs.LoginDto
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="min-vh-100 d-flex align-items-center justify-content-center bg-light">
+    <div class="card shadow-sm border-0" style="width: 380px;">
+        <div class="card-body p-4">
+
+            <h5 class="text-center mb-4 fw-bold">ورود به حساب کاربری</h5>
+
+            <form asp-action="Login" method="post">
+                @Html.AntiForgeryToken()
+
+                <div asp-validation-summary="All" class="text-danger small mb-2"></div>
+
+                <div class="mb-3">
+                    <label class="form-label">نام کاربری</label>
+                    <input asp-for="UserName" class="form-control form-control-lg" />
+                    <span asp-validation-for="UserName" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">رمز عبور</label>
+                    <input asp-for="Password" type="password" class="form-control form-control-lg" />
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 py-2">
+                    ورود
+                </button>
+            </form>
+
+            <div class="text-center mt-3">
+                <a asp-action="Register" class="text-decoration-none small">
+                    حساب کاربری ندارید؟ ثبت‌نام
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div> *@
