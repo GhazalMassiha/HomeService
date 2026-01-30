@@ -1,43 +1,40 @@
-﻿@* @model Core_HomeService.Domain.Core.UserAgg.DTOs.AccountDTOs.RegisterDto
+﻿@model HomeService_EndPoimt.MVC.Models.Account.RegisterViewModel
+@using Core_HomeService.Domain.Core.UserAgg.Enums
+
 @{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "ثبت‌نام";
+    Layout = "_AuthLayout";
 }
 
-<div class="min-vh-100 d-flex align-items-center justify-content-center bg-light">
-    <div class="card shadow-sm border-0" style="width: 380px;">
-        <div class="card-body p-4">
+<div class="auth-card">
+    <div class="auth-header">
+        <span class="logo">SEE5</span>
+        <h2>ایجاد حساب کاربری</h2>
+    </div>
 
-            <h5 class="text-center mb-4 fw-bold">ثبت‌نام</h5>
+    <form asp-action="Register" method="post" class="auth-form">
+        @Html.AntiForgeryToken()
 
-            <form asp-action="Register" method="post">
-                @Html.AntiForgeryToken()
+        <div asp-validation-summary="All" class="validation-summary-errors"></div>
 
-                <div asp-validation-summary="All" class="text-danger small mb-2"></div>
+        <label asp-for="UserName">نام کاربری</label>
+        <input asp-for="UserName" />
 
-                <div class="mb-3">
-                    <label class="form-label">نام کاربری</label>
-                    <input asp-for="UserName" class="form-control form-control-lg" />
-                    <span asp-validation-for="UserName" class="text-danger small"></span>
-                </div>
+        <label asp-for="Password">رمز عبور</label>
+        <input asp-for="Password" type="password" />
 
-                <div class="mb-3">
-                    <label class="form-label">رمز عبور</label>
-                    <input asp-for="Password" type="password" class="form-control form-control-lg" />
-                    <span asp-validation-for="Password" class="text-danger small"></span>
-                </div>
+        <label asp-for="ConfirmPassword">تکرار رمز عبور</label>
+        <input asp-for="ConfirmPassword" type="password" />
 
-                <button type="submit" class="btn btn-success w-100 py-2">
-                    ثبت‌نام
-                </button>
-            </form>
+        <label asp-for="Role">نقش</label>
+        <select asp-for="Role"
+                asp-items="Html.GetEnumSelectList<UserRoleEnum>()">
+        </select>
 
-            <div class="text-center mt-3">
-                <a asp-action="Login" class="text-decoration-none small">
-                    قبلاً ثبت‌نام کرده‌اید؟ ورود
-                </a>
-            </div>
+        <button type="submit" class="auth-button">ثبت‌نام</button>
+    </form>
 
-        </div>
+    <div class="auth-links">
+        <a asp-action="Login">بازگشت به ورود</a>
     </div>
 </div>
- *@

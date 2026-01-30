@@ -22,4 +22,8 @@
     <ProjectReference Include="..\..\02.Infrastructure\Db-HomeService.infra.Db.SqlServer.EFCore\HomeService.Infra.SqlServer.EFCore\HomeService.Infra.SqlServer.EFCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\" />
+  </ItemGroup>
+
 </Project>
