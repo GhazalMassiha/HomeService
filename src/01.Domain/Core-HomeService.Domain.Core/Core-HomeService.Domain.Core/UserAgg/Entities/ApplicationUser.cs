@@ -13,6 +13,8 @@ namespace Core_HomeService.Domain.Core.UserAgg.Entities
         public int ProvinceId { get; set; }
         public decimal AccountBalance { get; set; }
         public string? ImageUrl { get; set; }
+        public bool IsProfileCompleted { get; set; } = false;
+
 
         public City? City { get; set; }
         public Province? Province { get; set; }

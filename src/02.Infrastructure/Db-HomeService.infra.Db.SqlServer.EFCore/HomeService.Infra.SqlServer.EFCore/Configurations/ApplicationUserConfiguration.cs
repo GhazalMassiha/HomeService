@@ -48,6 +48,7 @@ namespace HomeService.Infra.SqlServer.EFCore.Configurations
                  LastName = "admin",
                  CityId = 1,
                  ProvinceId = 1,
+                 IsProfileCompleted = true,
                  EmailConfirmed = true,
                  SecurityStamp = Guid.NewGuid().ToString("D"),
                  ConcurrencyStamp = Guid.NewGuid().ToString("D"),
